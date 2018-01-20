@@ -1,0 +1,83 @@
+///
+/// VARIABLES
+///
+
+$prefix: sg-;
+$transition: .3s ease 0s;
+
+:root {
+	// COLORS
+	// base
+	--color-white: #fff;
+	--color-black: #000;
+
+	// green
+	--color-green1: #214b01;
+	--color-green2: #306c03;
+	--color-green3: #4a9600;
+	--color-green4: #88b164;
+	--color-green5: #c9e0b3;
+	--color-green6: #f1faeb;
+
+	// blue
+	--color-blue1: #011f4b;
+	--color-blue2: #03396c;
+	--color-blue3: #005b96;
+	--color-blue4: #6497b1;
+	--color-blue5: #b3cde0;
+	--color-blue6: #ebf4fa;
+
+	// grey
+	--color-grey1: #262626;
+	--color-grey2: #383838;
+	--color-grey3: #4b4b4b;
+	--color-grey4: #8a8a8a;
+	--color-grey5: #c9c9c9;
+	--color-grey6: #f3f3f3;
+
+	// theming
+	--color-shade1: var(--color-blue1);
+	--color-shade2: var(--color-blue2);
+	--color-shade3: var(--color-blue3);
+	--color-shade4: var(--color-blue4);
+	--color-shade5: var(--color-blue5);
+	--color-shade6: var(--color-blue6);
+
+	--color-primary: var(--color-shade3);
+	--color-bg-page: var(--color-shade6);
+	--color-fg-page: var(--color-shade2);
+	--color-link-page: var(--color-primary);
+	--color-bg-content: var(--color-white);
+	--color-fg-content: var(--color-black);
+	--color-link-content: var(--color-primary);
+	--color-form-default: var(--color-grey4);
+	--color-form-active: var(--color-primary);
+
+	// typography
+	--font-stack: 'Signika Negative', sans-serif;
+}
+
+.#{$prefix}theme-green {
+	--color-shade1: var(--color-green1);
+	--color-shade2: var(--color-green2);
+	--color-shade3: var(--color-green3);
+	--color-shade4: var(--color-green4);
+	--color-shade5: var(--color-green5);
+	--color-shade6: var(--color-green6);
+}
+
+.#{$prefix}theme-grey {
+	--color-shade1: var(--color-grey1);
+	--color-shade2: var(--color-grey2);
+	--color-shade3: var(--color-grey3);
+	--color-shade4: var(--color-grey4);
+	--color-shade5: var(--color-grey5);
+	--color-shade6: var(--color-grey6);
+	--color-primary: var(--color-blue3);
+}
+
+.#{$prefix}theme-dark {
+	--color-bg-page: var(--color-shade2);
+	--color-fg-page: var(--color-shade6);
+	--color-link-page: var(--color-shade5);
+}

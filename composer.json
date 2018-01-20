@@ -1,0 +1,8 @@
+{
+	"name": "pianomister/sg-filehoster",
+	"description": "Simple PHP library to run your own filehoster.",
+	"require": {
+		"greg0/lazer-database": "1.0.*",
+		"nicmart/string-template": "~0.1"
+	}
+}

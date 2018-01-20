@@ -1,0 +1,16 @@
+///
+/// LINKS
+///
+
+a {
+	color: var(--color-link-page);
+	text-decoration: none;
+	opacity: 1;
+	transition: opacity $transition;
+
+	&:hover,
+	&:active,
+	&:focus {
+		opacity: .7;
+	}
+}

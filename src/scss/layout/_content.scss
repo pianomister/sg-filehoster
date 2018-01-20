@@ -1,0 +1,25 @@
+///
+/// CONTENT
+///
+
+main {
+	display: block;
+	max-width: 40rem;
+	margin: 3rem auto;
+	
+	article {
+		display: block;
+		padding: 1rem;
+		background-color: var(--color-bg-content);
+		color: var(--color-fg-content);
+		box-shadow: 0 .1rem .3rem 0 rgba(0, 0, 0, .15);
+
+		> *:first-child {
+			margin-top: 0;
+		}
+
+		a {
+			color: var(--color-link-content);
+		}
+	}
+}

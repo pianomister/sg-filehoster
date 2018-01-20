@@ -1,0 +1,11 @@
+///
+/// MIXINS
+///
+
+@mixin breakpoint($point) {
+	@if $point == tablet {
+		@media (min-width: 48em) {
+			@content;
+		}
+ }
+}

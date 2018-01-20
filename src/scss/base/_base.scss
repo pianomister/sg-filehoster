@@ -1,0 +1,25 @@
+///
+/// BASE
+///
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	margin: 0;
+	padding: 0;
+	background: var(--color-bg-page) none;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+	padding: 1rem;
+	background: transparent none;
+	color: var(--color-fg-page);
+
+	@include breakpoint(tablet) {
+		padding: 2rem;
+	}
+}

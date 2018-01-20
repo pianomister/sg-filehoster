@@ -1,0 +1,25 @@
+# IDE files
+.idea
+.project
+.vscode
+
+# system files
+.DS_Store
+Thumbs.db
+
+# npm
+/node_modules/
+npm-debug.log
+.npm
+
+#build
+.cache
+/dist/
+
+# PHP composer
+composer.phar
+/vendor/
+
+# uploaded data (library)
+/data/*.json
+/data/uploads/*.file

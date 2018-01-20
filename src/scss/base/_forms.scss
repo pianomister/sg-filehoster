@@ -1,0 +1,108 @@
+///
+/// FORMS
+///
+
+// mixins for reuse
+@mixin -sg-input {
+	display: inline-block;
+	border: 1px solid var(--color-form-default);
+	border-radius: 0;
+	padding: .5rem;
+	font: 400 1rem var(--font-stack);
+	color: var(--color-fg-content);
+	background-color: var(--color-bg-content);
+
+	&:active,
+	&:focus {
+		border-color: var(--color-form-active);
+	}
+}
+
+@mixin -sg-button-active {
+	opacity: .9;
+	cursor: pointer;
+}
+
+@mixin -sg-button {
+	@include -sg-input;
+
+	border: 0;
+	padding: .5rem 2rem;
+	background-color: var(--color-primary);
+	color: var(--color-bg-content);
+	opacity: 1;
+	transition: opacity $transition;
+
+	&:hover,
+	&:active,
+	&:focus {
+		@include -sg-button-active;
+	}
+}
+
+// general form styling
+button,
+input,
+select,
+textarea {
+	@include -sg-input;
+}
+
+// button styling
+button,
+input[type='reset'],
+input[type='submit'] {
+	@include -sg-button;
+}
+
+// labels
+label {
+	display: block;
+}
+
+// custom file input styling
+input[type='file'] {
+	position: absolute;
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	z-index: -1;
+
+	+ label {
+		@include -sg-button;
+	}
+
+	&:focus + label {
+		@include -sg-button-active;
+	}
+}
+
+// drop area for file input
+.#{$prefix}drop-area {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	margin: 1rem 0;
+	border: 2px dashed var(--color-shade5);
+	padding: 2rem;
+	background-color: var(--color-bg-content);
+	transition: background-color $transition, border-color $transition;
+
+	&.#{$prefix}active {
+		border-color: var(--color-primary);
+		background-color: var(--color-shade6);
+	}
+}
+
+// button group
+.#{$prefix}button-group {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: flex-end;
+
+	> * + * {
+		margin-left: 1rem;
+	}
+}

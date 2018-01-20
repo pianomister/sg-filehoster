@@ -1,0 +1,32 @@
+{
+  "name": "sg-filehoster",
+  "version": "0.1.0",
+  "description": "Simple PHP library to run your own filehoster.",
+  "main": "index.php",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Stephan Giesau",
+  "license": "MIT",
+  "devDependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-core": "^6.26.0",
+    "babel-preset-es2017": "^6.24.1",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-util": "^3.0.8",
+    "normalize.css": "^7.0.0",
+    "typescript": "^2.6.2"
+  },
+  "dependencies": {
+    "clipboard": "^1.7.1"
+  }
+}
