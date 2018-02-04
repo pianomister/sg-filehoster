@@ -208,7 +208,7 @@ EOT;
 		$template = <<<EOT
 		<header>
 			<a href="{title_url}" class="sg-logo">
-				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 320 320">
+				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 320 320" height="32">
 					<path stroke-linejoin="round" d="m135 125v-20h-55v55h55v55h-55v-20" stroke="#000000" stroke-width="20" fill="none"/>
 					<path stroke-linejoin="round" d="m220 160h20v55h-55v-110h55v20" stroke="#000000" stroke-width="20" fill="none"/>
 					<rect stroke-linejoin="round" height="300" width="300" stroke="#000000" y="10" x="10" stroke-width="20" fill="none"/>
@@ -382,7 +382,7 @@ EOT;
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
 								<a href="{upload_link}">{all_files}</a>
-								<a data-clipboard-text="{upload_link}">{copy_action}</a>
+								<a class="sg-copy-action" data-clipboard-text="{upload_link}">{copy_action}</a>
 							</li>
 						</ul>
 						<h3 class="sg-h4">{share_individual_files}</h3>

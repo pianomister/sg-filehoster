@@ -38,7 +38,7 @@ class Utils
 
 	public static function hashPassword(string $password) : string
 	{
-		$hash = password_hash($password, PASSWORD_DEFAULT);
+		$hash = password_hash($password . \SGFilehoster\APP_SALT, PASSWORD_DEFAULT);
 
 		if ($hash !== null && $hash !== false) {
 			return $hash;
@@ -49,6 +49,6 @@ class Utils
 
 	public static function verifyPassword(string $password, string $hash) : bool
 	{
-		return password_verify($password, $hash);
+		return password_verify($password . \SGFilehoster\APP_SALT, $hash);
 	}
 }

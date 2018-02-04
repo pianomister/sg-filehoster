@@ -1,0 +1,3 @@
+AuthName Private
+AuthType Basic
+require valid-user

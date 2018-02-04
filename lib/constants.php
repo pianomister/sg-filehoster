@@ -3,8 +3,7 @@ declare(strict_types=1);
 
 namespace SGFilehoster;
 
-#const APP_KEY = 'tm6v5pmv8uzylqz68952wymggf0hxgbbv3kk74c8'; // key to encrypt/decrypt the database
-#const APP_SALT = '6ct6fjvpe95oc532sgv6gddmaa04qqbd2z2wbdpz'; // salt added to all passwords
+const APP_SALT = '6ct6fjvpe95oc532sgv6gddmaa04qqbd2z2wbdpz'; // salt added to all passwords, should be changed to any random value for each installation!
 
 // URL param names
 const PARAM_ACTION = 'action';
@@ -34,11 +33,11 @@ const UI_WELCOME_SHOW_UPLOAD_FORM = true; // true if upload form should be inclu
 
 define(__NAMESPACE__ . '\DATA_PATH', __DIR__ . '/../data/'); // directory where Lazer config files are stored, must end with a slash
 const UPLOAD_PATH = DATA_PATH . 'uploads/'; // directory where uploads are stored, must end with a slash
-const UPLOAD_PW = ''; // set a password to protect the upload form. Must be BCRYPT encoded, use the pwgenerator.php script to generate one.
+const UPLOAD_PW = ''; // set a password to protect the upload form. Must be generated using pwgenerator.php script.
 const UPLOAD_MAX_SIZE = 20971520; // max size of a single uploaded file, default 20971520 = 20 MB
 
 #const ADMIN_USER = ''; // username to access admin panel
-#const ADMIN_PW = ''; // password to access admin panel. Must be BCRYPT encoded, use the pwgenerator.php script to generate one.
+#const ADMIN_PW = ''; // password to access admin panel. Must be generated using pwgenerator.php script.
 
 // database table names and fields
 const TABLE_UPLOAD = 'SGUpload';
