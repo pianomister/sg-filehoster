@@ -1,0 +1,40 @@
+///
+/// LISTS
+///
+
+.#{$prefix}file-list {
+	margin: 0 0 .5rem;
+	padding: 0;
+
+	li {
+		list-style: none;
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		padding: .5rem;
+		word-wrap: break-word;
+		background-color: transparent;
+		transition: background-color $transition, padding $transition;
+	}
+
+	&--interactive {
+
+		li {
+			padding: .5rem 0;
+
+			&:hover {
+				padding: .5rem;
+				background-color: var(--color-grey6);
+			}
+		}
+	}
+
+	&__action {
+		display: flex;
+		flex-flow: row nowrap;
+		align-items: center;
+		justify-content: space-between;
+		width: 100%;
+	}
+}

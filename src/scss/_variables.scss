@@ -35,6 +35,10 @@ $transition: .3s ease 0s;
 	--color-grey5: #c9c9c9;
 	--color-grey6: #f3f3f3;
 
+	--color-lightgrey1: #e6e6e6;
+	
+	--color-error: #660000;
+
 	// theming
 	--color-shade1: var(--color-blue1);
 	--color-shade2: var(--color-blue2);
@@ -50,8 +54,14 @@ $transition: .3s ease 0s;
 	--color-bg-content: var(--color-white);
 	--color-fg-content: var(--color-black);
 	--color-link-content: var(--color-primary);
-	--color-form-default: var(--color-grey4);
-	--color-form-active: var(--color-primary);
+	--color-form-default-bg: var(--color-lightgrey1);
+	--color-form-default-fg: var(--color-grey3);
+	--color-form-hover-bg: var(--color-grey5);
+	--color-form-hover-fg: var(--color-grey2);
+	--color-form-checked-bg: var(--color-primary);
+	--color-form-checked-fg: var(--color-white);
+	--color-form-disabled-bg: var(--color-grey6);
+	--color-form-disabled-fg: var(--color-grey5);
 
 	// typography
 	--font-stack: 'Signika Negative', sans-serif;

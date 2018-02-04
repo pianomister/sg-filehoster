@@ -65,15 +65,29 @@ class ViewHandler
 
 			if ($files !== null) {
 
+				$fileTemplate = <<<EOT
+				<li>
+					<a href="{file_link}">{file_name}</a>
+					<a class="sg-copy-action" data-clipboard-text="{file_link}">{copy_action}</a>
+				</li>
+EOT;
+
 				$names = [];
 				foreach($files as $file) {
-						$names[] = \SGFilehoster\Utils::escapeHtml($file->original_name) . ' --- ' . \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]);
+						$names[] = self::renderTemplate(
+							$fileTemplate,
+							[
+								'file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
+								'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
+								'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
+							]
+						);
 				}
 
 				return self::renderTemplate(
-					'<p style="color: blue">{files}</p>',
+					'<ul class="sg-file-list sg-file-list--interactive">{files}</ul>',
 					[
-						'files' => implode('<br>', $names)
+						'files' => implode('', $names)
 					]
 				);
 			}
@@ -86,16 +100,26 @@ class ViewHandler
 
 	private static function renderDownloadLink(object $file) : string
 	{
+		$fileTemplate = <<<EOT
+		<li>
+			<a href="{file_link}" class="sg-file-list__action">
+				<span>{file_name}</span>
+				<span>{download_action}</span>
+			</a>
+		</li>
+EOT;
+
 		return self::renderTemplate(
-			'<a href="{link}">{label}</a>',
-			[
-				'link' => \SGFilehoster\Utils::getDisplayUrl([
-					\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_DOWNLOAD,
-					\SGFilehoster\PARAM_SHORT_FILE => $file->search_id
-				]),
-				'label' => \SGFilehoster\Labels::get('view.download.button_download')
-			]
-		);
+					$fileTemplate,
+					[
+						'file_link' => \SGFilehoster\Utils::getDisplayUrl([
+							\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_DOWNLOAD,
+							\SGFilehoster\PARAM_SHORT_FILE => $file->search_id
+						]),
+						'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
+						'download_action' => \SGFilehoster\Labels::get('view.download.button_download')
+					]
+				);
 	}
 
 
@@ -111,9 +135,7 @@ class ViewHandler
 			$file = \SGFilehoster\DataHandler::getFile($data['id']);
 
 			if ($file !== null) {
-				return '<p style="color: maroon">' . \SGFilehoster\Utils::escapeHtml($file->original_name) . ' --- ' . 
-				self::renderDownloadLink($file)
-				. '</p>';
+				return '<ul class="sg-file-list sg-file-list--interactive">' . self::renderDownloadLink($file) . '</ul>';
 			}
 		}
 
@@ -137,14 +159,13 @@ class ViewHandler
 
 				$names = [];
 				foreach($files as $file) {
-						$names[] = \SGFilehoster\Utils::escapeHtml($file->original_name) . ' --- ' .
-						self::renderDownloadLink($file);
+						$names[] = self::renderDownloadLink($file);
 				}
 
 				return self::renderTemplate(
-					'<p style="color: green">{files}</p>',
+					'<ul class="sg-file-list sg-file-list--interactive">{files}</ul>',
 					[
-						'files' => implode('<br>', $names)
+						'files' => implode('', $names)
 					]
 				);
 			}
@@ -260,39 +281,45 @@ EOT;
 					<h2>{title}</h2>
 					{errors}
 					<form action="{action}" enctype="multipart/form-data" method="post">
-						<p class="sg-drop-area" id="drop-area">
+						<p class="sg-input-file">
 							<input name="files[]" id="files" type="file" multiple
 										 data-multiple-caption="{files_selected}" />
 							<label for="files">{field_files}</label>
-							{drop_area}
 							<small>{size_limit} {size_limit_value}</small>
 						</p>
 						<p>
-						<label for="option_password">
-							<input type="checkbox" id="option_password" name="option_password" />
-							{field_option_password}
-						</label>
-						<label for="upload_password">{field_upload_password}</label>
-						<input type="password" id="upload_password" name="upload_password" />
+							<input type="checkbox" class="sg-control" id="option_password" name="option_password" />
+							<label for="option_password">
+								{field_option_password}
+							</label>
+							<span class="sg-control-checked-visible">
+								<label for="upload_password">{field_upload_password}</label>
+								<input type="password" id="upload_password" name="upload_password" />
+							</span>
 						</p>
 
 						<p>
-						<label for="option_time">
-							<input type="checkbox" id="option_time" name="option_time" />
-							{field_option_time}
-						</label>
-						<label for="upload_time">{field_upload_time}</label>
-						<input type="number" id="upload_time" name="upload_time"
-									 min="1" max="99" step="1"
-									 size="2" maxlength="2"
-									 oninput="validity.valid||(value='');" />
-						<select name="upload_time_unit">
-							<option value="minutes">{value_upload_time_minutes}</option>
-							<option value="hours">{value_upload_time_hours}</option>
-							<option value="days">{value_upload_time_days}</option>
-							<option value="weeks">{value_upload_time_weeks}</option>
-							<option value="months">{value_upload_time_months}</option>
-						</select>
+							<input type="checkbox" class="sg-control" id="option_time" name="option_time" />
+							<label for="option_time">
+								{field_option_time}
+							</label>
+							<span class="sg-control-checked-visible">
+								<label for="upload_time">{field_upload_time}</label>
+								<input type="number" id="upload_time" name="upload_time"
+											min="1" max="99" step="1"
+											size="2" maxlength="2"
+											oninput="validity.valid||(value='');" />
+								<span class="sg-select">
+									<select name="upload_time_unit">
+										<option value="minutes">{value_upload_time_minutes}</option>
+										<option value="hours">{value_upload_time_hours}</option>
+										<option value="days">{value_upload_time_days}</option>
+										<option value="weeks">{value_upload_time_weeks}</option>
+										<option value="months">{value_upload_time_months}</option>
+									</select>
+									<span class="sg-select__arrow"></span>
+								</span>
+							</span>
 						</p>
 
 						{password}
@@ -350,9 +377,15 @@ EOT;
 				<main>
 					<article>
 						<h2>{title}</h2>
-						<p>{body}</p>
 						{errors}
-						{upload}
+						<h3 class="sg-h4">{share_all_files}</h3>
+						<ul class="sg-file-list sg-file-list--interactive">
+							<li>
+								<a href="{upload_link}">{all_files}</a>
+								<a data-clipboard-text="{upload_link}">{copy_action}</a>
+							</li>
+						</ul>
+						<h3 class="sg-h4">{share_individual_files}</h3>
 						{table}
 					</article>
 				</main>
@@ -362,9 +395,12 @@ EOT;
 					$template,
 					[
 						'title' => \SGFilehoster\Labels::get('view.upload.title'),
-						'body' => \SGFilehoster\Labels::get('view.upload.body'),
-						'upload' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_UPLOAD => $data['id']]),
+						'share_all_files' => \SGFilehoster\Labels::get('view.upload.share_all_files'),
+						'all_files' => \SGFilehoster\Labels::get('view.upload.all_files'),
+						'upload_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_UPLOAD => $data['id']]),
+						'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
 						'errors' => self::renderErrors($data),
+						'share_individual_files' => \SGFilehoster\Labels::get('view.upload.share_individual_files'),
 						'table' => self::renderUploadTable($data)
 					]
 				);

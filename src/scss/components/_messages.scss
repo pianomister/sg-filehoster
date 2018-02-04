@@ -1,0 +1,13 @@
+///
+/// MESSAGES
+///
+
+.#{$prefix}message {
+	display: block;
+	padding: .5rem;
+
+	&--error {
+		color: var(--color-white);
+		background-color: var(--color-error);
+	}
+}

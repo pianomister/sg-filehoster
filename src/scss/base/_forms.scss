@@ -5,16 +5,23 @@
 // mixins for reuse
 @mixin -sg-input {
 	display: inline-block;
-	border: 1px solid var(--color-form-default);
+	border: 0;
 	border-radius: 0;
+	outline: 0;
 	padding: .5rem;
 	font: 400 1rem var(--font-stack);
-	color: var(--color-fg-content);
-	background-color: var(--color-bg-content);
+	color: var(--color-form-default-fg);
+	background-color: var(--color-form-default-bg);
 
 	&:active,
 	&:focus {
-		border-color: var(--color-form-active);
+		color: var(--color-form-hover-fg);
+		background-color: var(--color-form-hover-bg);
+	}
+	
+	&:disabled {
+		color: var(--color-form-disabled-fg);
+		background-color: var(--color-form-disabled-bg);
 	}
 }
 
@@ -55,26 +62,213 @@ input[type='submit'] {
 	@include -sg-button;
 }
 
+// checkbox & radio button
+.#{$prefix}control {
+	@include -sg-hidden;
+	
+	& + & {
+		margin-top: .5rem;
+	}
+
+  & + label {
+		position: relative;
+		display: flex;
+		align-items: flex-start;
+		padding: 0;
+    cursor: pointer;
+  }
+
+  // box
+  & + label::before {
+		content: '';
+		flex: none;
+		display: inline-block;
+    width: 1.25rem;
+    height: 1.25rem;
+    margin-right: .5rem;
+    color: var(--color-form-default-fg);
+    background-color: var(--color-form-default-bg);
+	}
+	
+	// radio box
+	&[type='radio'] + label::before {
+		border-radius: 50%;
+	}
+
+  // box hover
+  &:hover + label::before {
+    color: var(--color-form-hover-fg);
+    background-color: var(--color-form-hover-bg);
+  }
+  
+  // box focus
+  &:focus + label::before {
+    box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+  }
+
+  // box checked
+  &:checked + label::before {
+    color: var(--color-form-checked-fg);
+    background-color: var(--color-form-checked-bg);
+  }
+  
+  // disabled state label
+  &:disabled + label {
+    color: var(--color-form-disabled-fg);
+    cursor: auto;
+  }
+
+  // disabled box
+  &:disabled + label::before {
+    box-shadow: none;
+    background-color: var(--color-form-disabled-bg);
+  }
+
+  // checkmark
+  &[type='checkbox']:checked + label::after {
+		content: '';
+		position: absolute;
+		left: .45rem;
+		top: .25rem;
+		width: .25rem;
+		height: .5rem;
+		border: solid var(--color-form-checked-fg);
+		border-width: 0 .125rem .125rem 0;
+		transform: rotate(45deg);
+	}
+
+	// radio
+	&[type='radio']:checked + label::after {
+		content: '';
+		position: absolute;
+		top: .375rem;
+		left: .375rem;
+		width: .5rem;
+		height: .5rem;
+		border-radius: 50%;
+		background: var(--color-form-checked-fg);
+	}
+	
+	// disabled checkbox
+	&[type='checkbox']:disabled + label::after {
+		border-color: var(--color-form-disabled-fg);
+	}
+
+	// disabled radio
+	&[type='radio']:disabled + label::after {
+		background-color: var(--color-form-disabled-fg);
+	}
+
+	// hidden content, dependent on checked state
+	&:not(:checked) + label + .#{$prefix}control-checked-visible {
+		@include -sg-hidden;
+	}
+	
+	&:checked + label + .#{$prefix}control-checked-visible {
+		display: flex;
+		flex-flow: column nowrap;
+		margin: .5rem 0 0 1.75rem;
+
+		* {
+			margin-bottom: .5rem;
+		}
+		
+		@include -sg-breakpoint(tablet) {
+			flex-flow: row wrap;
+			align-items: center;
+
+			* {
+				margin-bottom: 0;
+			}
+		}
+
+		label,
+		input {
+			margin-right: .5rem;
+		}
+	}
+}
+
+// select
+.#{$prefix}select {
+	// @include -sg-input;
+
+	position: relative;
+
+	select {
+		padding-right: 2rem;
+		cursor: pointer;
+		-webkit-appearance: none;
+		-moz-appearance: none;
+		appearance: none;
+
+		&::-ms-expand {
+			display: none;
+		}
+
+		&:disabled {
+			pointer-events: none;
+		}
+	}
+	
+	&__arrow {
+		position: absolute;
+		top: 16px;
+		right: 15px;
+		width: 0;
+		height: 0;
+		pointer-events: none;
+		border-style: solid;
+		border-width: .4rem .35rem 0 .35rem;
+		border-color: var(--color-form-default-fg) transparent transparent transparent;
+	}
+	
+	select:active ~ .#{$prefix}select__arrow,
+	select:focus ~ .#{$prefix}select__arrow {
+		border-top-color: var(--color-form-hover-fg);
+	}
+	
+	select:disabled ~ .select__arrow {
+		border-top-color: var(--color-form-disabled-fg);
+	}
+}
+
 // labels
 label {
 	display: block;
 }
 
-// custom file input styling
-input[type='file'] {
-	position: absolute;
-	width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	z-index: -1;
+// button group
+.#{$prefix}button-group {
+	display: flex;
+	flex-flow: row wrap;
+	align-items: center;
+	justify-content: flex-end;
 
-	+ label {
-		@include -sg-button;
+	> * + * {
+		margin-left: 1rem;
 	}
+}
 
-	&:focus + label {
-		@include -sg-button-active;
+// custom file input styling
+.#{$prefix}input-file {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+	padding: 1rem;
+
+	input[type='file'] {
+		@include -sg-hidden;
+		
+		+ label {
+			@include -sg-button;
+
+			margin-bottom: .5rem;
+		}
+		
+		&:focus + label {
+			@include -sg-button-active;
+		}
 	}
 }
 
@@ -92,17 +286,5 @@ input[type='file'] {
 	&.#{$prefix}active {
 		border-color: var(--color-primary);
 		background-color: var(--color-shade6);
-	}
-}
-
-// button group
-.#{$prefix}button-group {
-	display: flex;
-	flex-flow: row wrap;
-	align-items: center;
-	justify-content: flex-end;
-
-	> * + * {
-		margin-left: 1rem;
 	}
 }

@@ -19,7 +19,7 @@ body {
 	background: transparent none;
 	color: var(--color-fg-page);
 
-	@include breakpoint(tablet) {
+	@include -sg-breakpoint(tablet) {
 		padding: 2rem;
 	}
 }

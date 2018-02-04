@@ -10,7 +10,7 @@ header {
 	max-width: 40rem;
 	margin: 0 auto 3rem;
 
-	@include breakpoint(tablet) {
+	@include -sg-breakpoint(tablet) {
 		margin-bottom: 4rem;
 	}
 

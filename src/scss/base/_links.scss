@@ -12,5 +12,6 @@ a {
 	&:active,
 	&:focus {
 		opacity: .7;
+		cursor: pointer;
 	}
 }

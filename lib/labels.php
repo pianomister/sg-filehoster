@@ -9,6 +9,7 @@ const LABELS = [
 		'view.general.button_login' => 'Sign in',
 		'view.general.password_required' => 'This access is protected. Please enter the password.',
 		'view.general.error.wrong_password' => 'The password you entered is not correct.',
+		'view.general.copy_action' => 'Copy link',
 
 		'view.welcome.title' => 'Simply share files.',
 		'view.welcome.body' => 'Upload one or more files, protect by password or time-boxed access, share the download link.',
@@ -16,11 +17,10 @@ const LABELS = [
 		'view.upload_form.title' => 'Upload',
 		'view.upload_form.size_limit' => 'File size limit:',
 		'view.upload_form.field_files' => 'Select files ...',
-		'view.upload_form.drop_area' => 'or drag & drop files here',
 		'view.upload_form.files_selected' => '{count} files selected',
 		'view.upload_form.field_option_password' => 'Protect access to uploaded files',
 		'view.upload_form.field_upload_password' => 'with password',
-		'view.upload_form.field_option_time' => 'Files are available for certain time only',
+		'view.upload_form.field_option_time' => 'Files are available for limited time',
 		'view.upload_form.field_upload_time' => 'and deleted after',
 		'view.upload_form.value_upload_time_minutes' => 'Minute(s)',
 		'view.upload_form.value_upload_time_hours' => 'Hour(s)',
@@ -36,7 +36,9 @@ const LABELS = [
 		'view.upload_form.error.wrong_time' => 'The provided destroy time was provided in the wrong format. Please provide a full, positive number.',
 
 		'view.upload.title' => 'Upload completed',
-		'view.upload.body' => 'You can share the whole list or individual files by copying the respective share links.',
+		'view.upload.all_files' => 'All files from this upload',
+		'view.upload.share_all_files' => 'Share all files',
+		'view.upload.share_individual_files' => 'Share individual files',
 
 		'view.show_upload.title' => 'Download files',
 		'view.show_upload.error.not_found' => 'The requested upload was not found. Maybe you mistyped the URL, or the upload was deleted.',

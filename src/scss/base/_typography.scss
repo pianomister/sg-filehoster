@@ -24,7 +24,7 @@ body {
 }
 
 p {
-	margin: 0 0 1.3em;
+	margin: 0 0 1.3rem;
 }
 
 h1,
@@ -33,7 +33,7 @@ h3,
 h4,
 h5,
 h6 {
-	margin: 1.414em 0 0.5em;
+	margin: 1.414rem 0 0.5rem;
 	font-weight: 600;
 	line-height: 1.2;
 }
@@ -41,17 +41,17 @@ h6 {
 h1,
 .#{$prefix}h1 {
 	margin-top: 0;
-	font-size: 1.602em;
+	font-size: 1.602rem;
 }
 
 h2,
 .#{$prefix}h2 {
-	font-size: 1.424em;
+	font-size: 1.424rem;
 }
 
 h3,
 .#{$prefix}h3 {
-	font-size: 1.266em;
+	font-size: 1.266rem;
 }
 
 h4,
@@ -60,10 +60,10 @@ h5,
 .#{$prefix}h5,
 h6,
 .#{$prefix}h6 {
-	font-size: 1.125em;
+	font-size: 1.125rem;
 }
 
 small,
 .#{$prefix}font-small {
-	font-size: 0.889em;
+	font-size: 0.889rem;
 }

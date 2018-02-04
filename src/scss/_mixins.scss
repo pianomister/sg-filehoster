@@ -2,10 +2,20 @@
 /// MIXINS
 ///
 
-@mixin breakpoint($point) {
-	@if $point == tablet {
+
+@mixin -sg-breakpoint($point) {
+	@if ($point == tablet) {
 		@media (min-width: 48em) {
 			@content;
 		}
- }
+	}
+}
+
+@mixin -sg-hidden {
+	position: absolute;
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	z-index: -1;
 }
