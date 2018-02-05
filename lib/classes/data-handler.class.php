@@ -210,20 +210,12 @@ class DataHandler
 
 
 	/**
-	 * Returns upload that belongs to given file searchId, or null if file was not found.
+	 * Returns all available uploads with related files.
 	 */
-	/*
-	public static function getUploadForFile(string $fileId) : ?object
+	public static function getAllUploadsWithFiles() : ?DB
 	{
-		$file = DB::table(\SGFilehoster\TABLE_FILE)->with(\SGFilehoster\TABLE_UPLOAD)->where('search_id', '=', $fileId)->find();
-
-		if (isset($file->id)) {
-			return $file->{\SGFilehoster\TABLE_UPLOAD};
-		}
-
-		return null;
+		return DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->findAll();
 	}
-	*/
 
 
 	/**

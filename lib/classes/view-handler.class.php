@@ -68,7 +68,7 @@ class ViewHandler
 				$fileTemplate = <<<EOT
 				<li>
 					<a href="{file_link}">{file_name}</a>
-					<a class="sg-copy-action" data-clipboard-text="{file_link}">{copy_action}</a>
+					<span class="sg-link sg-copy-action" data-clipboard-text="{file_link}">{copy_action}</span>
 				</li>
 EOT;
 
@@ -201,6 +201,69 @@ EOT;
 
 
 	/**
+	 * Renders login form for administration area.
+	 */
+	private static function renderLoginForm() : string
+	{
+		$template = <<<EOT
+		<article>
+			<form action="{action}" method="post">
+				<p>
+					<label for="username">{field_username}</label>
+					<input name="username" type="text" id="username" placeholder="{field_username}" />
+				</p>
+				<p>
+					<label for="password">{field_password}</label>
+					<input name="password" type="password" id="password" placeholder="{field_password}" />
+				</p>
+				<div class="sg-button-group">
+					<input type="submit" value="{button_login}">
+				</div>
+			</form>
+		</article>
+EOT;
+
+		return self::renderTemplate(
+			$template,
+			[
+				'action' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_ADMIN]),
+				'field_username' => \SGFilehoster\Labels::get('view.login.field_username'),
+				'field_password' => \SGFilehoster\Labels::get('view.login.field_password'),
+				'button_login' => \SGFilehoster\Labels::get('view.general.button_login')
+			]
+		);
+	}
+
+
+	/**
+	 * Renders administration area.
+	 */
+	private static function renderAdmin() : string
+	{
+		$content = '<p>' . \SGFilehoster\Labels::get('view.admin.body') . '</p>';
+
+		$template = <<<EOT
+		<section>
+			{upload}
+		</section>
+EOT;
+
+		$uploads = \SGFilehoster\DataHandler::getAllUploadsWithFiles();
+		foreach($uploads as $upload) {
+			$data = ['id' => $upload->search_id];
+			$content .= self::renderTemplate(
+				$template,
+				[
+					'upload' => self::renderUploadTable($data)
+				]
+			);
+		}
+
+		return $content;
+	}
+
+
+	/**
 	 * Renders page header.
 	 */
 	public static function getHeader() : string
@@ -227,7 +290,7 @@ EOT;
 				$linkTemplate,
 				[
 					'login' => \SGFilehoster\Labels::get('view.general.login'),
-					'login_url' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_LOGIN])
+					'login_url' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_ADMIN])
 				]
 			);
 		}
@@ -382,7 +445,7 @@ EOT;
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
 								<a href="{upload_link}">{all_files}</a>
-								<a class="sg-copy-action" data-clipboard-text="{upload_link}">{copy_action}</a>
+								<span class="sg-link sg-copy-action" data-clipboard-text="{upload_link}">{copy_action}</span>
 							</li>
 						</ul>
 						<h3 class="sg-h4">{share_individual_files}</h3>
@@ -454,6 +517,30 @@ EOT;
 						'title' => \SGFilehoster\Labels::get('view.show_file.title'),
 						'errors' => self::renderErrors($data),
 						'file' => $data['password_required'] ? self::renderPasswordForm($data, \SGFilehoster\PARAM_SHORT_FILE) : self::renderDownloadFile($data)
+					]
+				);
+				break;
+
+
+			case \SGFilehoster\ACTION_ADMIN:
+				if (!isset($data['password_required'])) {
+					$data['password_required'] = true;
+				}
+
+				$template = <<<EOT
+				<main>
+					<h1>{title}</h1>
+					{errors}
+					{content}
+				</main>
+EOT;
+
+				return self::renderTemplate(
+					$template,
+					[
+						'title' => \SGFilehoster\Labels::get('view.admin.title'),
+						'errors' => self::renderErrors($data),
+						'content' => $data['password_required'] ? self::renderLoginForm() : self::renderAdmin($data)
 					]
 				);
 				break;

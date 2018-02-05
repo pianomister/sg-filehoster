@@ -48,6 +48,14 @@ const LABELS = [
 
 		'view.download.button_download' => 'Download',
 
+		'view.login.field_username' => 'Username',
+		'view.login.field_password' => 'Password',
+
+		'view.admin.title' => 'Administration',
+		'view.admin.body' => 'View the upload history, share past uploads and delete files that are not needed anymore.',
+		'view.admin.credentials_required' => 'This access is protected. Please enter your credentials.',
+		'view.admin.error.wrong_credentials' => 'The credentials you entered are not correct.',
+
 		'view.not_found.title' => 'Not found',
 		'view.not_found.body' => 'The page or file you requested is not available.',
 

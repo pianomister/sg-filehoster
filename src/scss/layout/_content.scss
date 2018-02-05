@@ -7,6 +7,7 @@ main {
 	max-width: 40rem;
 	margin: 3rem auto;
 	
+	section,
 	article {
 		display: block;
 		padding: 1rem;
@@ -21,5 +22,9 @@ main {
 		a {
 			color: var(--color-link-content);
 		}
+	}
+
+	section + section {
+		margin-top: 2rem;
 	}
 }

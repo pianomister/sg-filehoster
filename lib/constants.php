@@ -5,14 +5,17 @@ namespace SGFilehoster;
 
 const APP_SALT = '6ct6fjvpe95oc532sgv6gddmaa04qqbd2z2wbdpz'; // salt added to all passwords, should be changed to any random value for each installation!
 
+// admin credentials
+const ADMIN_USER = 'admin'; // username to access admin panel
+const ADMIN_PW = '$2y$10$MbJ20a2MQkYKPzhJxscQIuzuv2U6NgsyNcPe..QnbujrZ6d0fk9kS'; // password to access admin panel. Must be generated using pwgenerator.php script.
+
 // URL param names
 const PARAM_ACTION = 'action';
 const PARAM_SHORT_UPLOAD = 'u';
 const PARAM_SHORT_FILE = 'f';
 
 // strings used as values for 'action' URL param
-const ACTION_LOGIN = 'login';
-#const ACTION_ADMIN = 'admin';
+const ACTION_ADMIN = 'admin';
 const ACTION_WELCOME = 'welcome'; // welcome page / home page
 const ACTION_UPLOAD_FORM = 'upload_form'; // show upload form in UI
 const ACTION_UPLOAD = 'upload'; // upload action, called by upload form
@@ -36,8 +39,6 @@ const UPLOAD_PATH = DATA_PATH . 'uploads/'; // directory where uploads are store
 const UPLOAD_PW = ''; // set a password to protect the upload form. Must be generated using pwgenerator.php script.
 const UPLOAD_MAX_SIZE = 20971520; // max size of a single uploaded file, default 20971520 = 20 MB
 
-#const ADMIN_USER = ''; // username to access admin panel
-#const ADMIN_PW = ''; // password to access admin panel. Must be generated using pwgenerator.php script.
 
 // database table names and fields
 const TABLE_UPLOAD = 'SGUpload';

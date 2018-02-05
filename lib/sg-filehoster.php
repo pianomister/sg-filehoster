@@ -247,7 +247,7 @@ class SGFilehoster
 								$viewData['password_required'] = false;
 								break;
 							} else {
-								$viewData['error'][] = Labels::get('view.general.error.wrong_password');
+								$viewData['error'][] = \SGFilehoster\Labels::get('view.general.error.wrong_password');
 								break;
 							}
 						}
@@ -298,7 +298,7 @@ class SGFilehoster
 								break;
 
 							} else {
-								$viewData['error'][] = Labels::get('view.general.error.wrong_password');
+								$viewData['error'][] = \SGFilehoster\Labels::get('view.general.error.wrong_password');
 								break;
 							}
 						}
@@ -339,6 +339,39 @@ class SGFilehoster
 				}
 				$viewData['action'] = \SGFilehoster\ACTION_NOT_FOUND;
 				$viewData['error'][] = \SGFilehoster\Labels::get('view.show_file.error.not_found');
+
+				break;
+
+
+			case \SGFilehoster\ACTION_ADMIN:
+				// require password by default
+				$viewData['password_required'] = true;
+				
+				// check for available admin session
+				session_start();
+				if (isset($_SESSION['admin_access']) && $_SESSION['admin_access'] === true) {
+					$viewData['password_required'] = false;
+					break;
+				}
+
+				// check validity of password
+				if (isset($_POST['username']) && isset($_POST['password'])) {
+					if ($_POST['username'] === \SGFilehoster\ADMIN_USER
+						&& \SGFilehoster\Utils::verifyPassword($_POST['password'], \SGFilehoster\ADMIN_PW)) {
+
+						// add session access token for admin
+						$_SESSION['admin_access'] = true;
+
+						$viewData['password_required'] = false;
+						break;
+
+					} else {
+						$viewData['error'][] = \SGFilehoster\Labels::get('view.admin.error.wrong_credentials');
+						break;
+					}
+				} else {
+					$viewData['error'][] = \SGFilehoster\Labels::get('view.admin.credentials_required');
+				}
 
 				break;
 		}

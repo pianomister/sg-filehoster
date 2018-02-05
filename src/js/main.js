@@ -4,7 +4,12 @@
  */
 
 // CLIPBOARD ACTIONS
-new Clipboard('.sg-copy-action');
+const clipboard = new Clipboard('.sg-copy-action');
+clipboard.on('success', function(e) {
+	// remove focus on copy element, because other clipboard actions
+	// else might not work afterwards
+	document.focus();
+});
 
 // UPLOAD FORM
 // file input
