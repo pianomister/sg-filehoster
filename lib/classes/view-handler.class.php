@@ -98,7 +98,7 @@ EOT;
 	}
 
 
-	private static function renderDownloadLink(object $file) : string
+	private static function renderDownloadLink($file) : string
 	{
 		$fileTemplate = <<<EOT
 		<li>

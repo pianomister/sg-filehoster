@@ -44,7 +44,7 @@ class Utils
 			return $hash;
 		}
 
-		throw \SGFilehoster\SGException('An error occured when hashing the password.');
+		throw new \SGFilehoster\SGException('An error occured when hashing the password.');
 	}
 
 	public static function verifyPassword(string $password, string $hash) : bool

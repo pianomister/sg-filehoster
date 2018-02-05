@@ -3,9 +3,11 @@ declare(strict_types=1);
 
 namespace SGFilehoster;
 
+require_once __DIR__ . '/classes/exception.class.php';
+
 // version check
-if (version_compare(phpversion(), '7.2.0', '<')) {
-	throw SGException('PHP version is too old to run this library.');
+if (version_compare(phpversion(), '7.0.0', '<')) {
+	throw new \SGFilehoster\SGException('PHP version must be at least 7.0.0 to run this library.');
 	exit();
 }
 
@@ -39,7 +41,7 @@ class SGFilehoster
 	/**
 	 * Checks if Filehoster is initialized, if not, Filehoster is initialized.
 	 */
-	private static function checkInitialized() : void
+	private static function checkInitialized()
 	{
 		if (!self::$initialized) {
 			\SGFilehoster\DataHandler::initDatabase();

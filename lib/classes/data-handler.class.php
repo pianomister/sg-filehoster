@@ -10,7 +10,7 @@ class DataHandler
 	/**
 	 * Initializes database tables, in case they do not exist.
 	 */
-	public static function initDatabase() : void
+	public static function initDatabase()
 	{
 		// check if tables exist, if not, create them
 		try {
@@ -46,7 +46,7 @@ class DataHandler
 	/**
 	 * Creates a new upload entry in uploads table.
 	 */
-	public static function createUpload(array $data = []) : void
+	public static function createUpload(array $data = [])
 	{
 		$upload = DB::table(\SGFilehoster\TABLE_UPLOAD);
 		$upload->search_id = $data['search_id'] ?? -1;
@@ -60,7 +60,7 @@ class DataHandler
 	/**
 	 * Creates a new file entry in files table.
 	 */
-	public static function createFile(array $data = []) : void
+	public static function createFile(array $data = [])
 	{
 		$file = DB::table(\SGFilehoster\TABLE_FILE);
 		$file->search_id = $data['search_id'] ?? -1;
@@ -76,7 +76,7 @@ class DataHandler
 	/**
 	 * Returns upload for given searchId, or null if not found.
 	 */
-	public static function getUpload(string $searchId) : ?DB
+	public static function getUpload(string $searchId)
 	{
 		$upload = DB::table(\SGFilehoster\TABLE_UPLOAD)->where('search_id', '=', $searchId)->find();
 
@@ -91,7 +91,7 @@ class DataHandler
 	/**
 	 * Returns file for given searchId, or null if not found.
 	 */
-	public static function getFile(string $searchId) : ?DB
+	public static function getFile(string $searchId)
 	{
 		$file = DB::table(\SGFilehoster\TABLE_FILE)->where('search_id', '=', $searchId)->find();
 
@@ -151,7 +151,7 @@ class DataHandler
 	 * Deletes database entry for given upload searchId.
 	 * Also triggers deletion of related files.
 	 */
-	public static function deleteUpload(string $searchId) : void
+	public static function deleteUpload(string $searchId)
 	{
 		$upload = DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->where('search_id', '=', $searchId)->find();
 
@@ -167,13 +167,13 @@ class DataHandler
 	 * Deletes database entry for given file searchId.
 	 * Also deletes related physical file.
 	 */
-	public static function deleteFile(string $searchId) : void
+	public static function deleteFile(string $searchId)
 	{
 		$file = DB::table(\SGFilehoster\TABLE_FILE)->where('search_id', '=', $searchId)->find();
 		try {
 			unlink(realpath(\SGFilehoster\UPLOAD_PATH . $file->file_name));
 		} catch(\Exception $e) {
-			throw \SGFilehoster\SGException('File could not be deleted.');
+			throw new \SGFilehoster\SGException('File could not be deleted.');
 		}
 		$file->delete();
 	}
@@ -182,7 +182,7 @@ class DataHandler
 	/**
 	 * Returns files related to given upload searchId, or null if upload was not found.
 	 */
-	public static function getFilesForUpload(string $uploadId) : ?DB
+	public static function getFilesForUpload(string $uploadId)
 	{
 		$upload = DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->where('search_id', '=', $uploadId)->find();
 
@@ -197,7 +197,7 @@ class DataHandler
 	/**
 	 * Returns file with related upload for given file searchId, or null if file was not found.
 	 */
-	public static function getFileWithUpload(string $fileId) : ?DB
+	public static function getFileWithUpload(string $fileId)
 	{
 		$file = DB::table(\SGFilehoster\TABLE_FILE)->with(\SGFilehoster\TABLE_UPLOAD)->where('search_id', '=', $fileId)->find();
 
@@ -212,7 +212,7 @@ class DataHandler
 	/**
 	 * Returns all available uploads with related files.
 	 */
-	public static function getAllUploadsWithFiles() : ?DB
+	public static function getAllUploadsWithFiles() : DB
 	{
 		return DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->findAll();
 	}
@@ -221,7 +221,7 @@ class DataHandler
 	/**
 	 * Serves the related file for given searchId to the user.
 	 */
-	public static function serveFile(string $searchId) : void
+	public static function serveFile(string $searchId)
 	{
 		$file = self::getFile($searchId);
 		if ($file !== null) {
