@@ -12,7 +12,7 @@ Thumbs.db
 npm-debug.log
 .npm
 
-#build
+# build
 .cache
 /dist/
 
@@ -20,6 +20,6 @@ npm-debug.log
 composer.phar
 /vendor/
 
-# uploaded data (library)
+# DB and uploaded data (library)
 /data/*.json
 /data/uploads/*.file
