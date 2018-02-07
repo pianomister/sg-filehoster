@@ -12,8 +12,6 @@ class ActionHandler
 	 */
 	public static function execute(string $action, array $data) : array
 	{
-		self::checkInitialized();
-
 		// by default, use the same action
 		$viewData = [
 			'action' => $action,

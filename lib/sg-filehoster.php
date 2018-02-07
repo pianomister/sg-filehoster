@@ -56,6 +56,8 @@ class SGFilehoster
 	 */
 	public static function executeAction(string $action, array $data) : array
 	{
+		self::checkInitialized();
+
 		return \SGFilehoster\ActionHandler::execute($action, $data);
 	}
 
