@@ -25,6 +25,7 @@ class Labels {
 		return false;
 	}
 
+
 	/**
 	 * Returns label with given name for current language, or '[LABEL_MISSING:$label]' if not available.
 	 */

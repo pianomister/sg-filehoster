@@ -10,9 +10,12 @@ Simple PHP library to run your own filehoster.
 - Session-based access control to prevent direct deep-linking
 
 ## Requirements
-- PHP 7.2+
+- PHP 7.0+
 - Composer
 
 TODO
 - .editorconfig
-- remove logo from title?
+- move logo from title into config
+- add more info in admin panel (protection methods, creation date)
+- delete files and uploads from admin panel
+- statistics for downloads / files?
