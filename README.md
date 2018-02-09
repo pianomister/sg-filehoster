@@ -29,3 +29,7 @@ Finally, upload all files to your webspace, and start using it! You may omit the
 - delete files and uploads from admin panel
 - statistics for downloads / files?
 - migrate gulp to webpack
+- add favicon
+- add icons in UI
+- add open graph meta tags for social media sharing (facebook, twitter etc.)
+- fix normalize.css import
