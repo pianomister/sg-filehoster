@@ -34,11 +34,13 @@
 	@include -sg-input;
 
 	border: 0;
+	border-radius: 0;
 	padding: .5rem 2rem;
 	background-color: var(--color-primary);
 	color: var(--color-bg-content);
 	opacity: 1;
 	transition: opacity $transition;
+	-webkit-appearance: none;
 
 	&:hover,
 	&:active,

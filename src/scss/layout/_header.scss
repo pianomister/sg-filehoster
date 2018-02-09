@@ -27,11 +27,14 @@ header {
 		color: var(--color-fg-page);
 		font-weight: 600;
 
+		img,
 		svg {
 			height: 2rem;
 			width: auto;
 			margin-right: 1rem;
+		}
 
+		svg {
 			rect,
 			path {
 				stroke: var(--color-fg-page);

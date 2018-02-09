@@ -271,11 +271,7 @@ EOT;
 		$template = <<<EOT
 		<header>
 			<a href="{title_url}" class="sg-logo">
-				<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 320 320" height="32">
-					<path stroke-linejoin="round" d="m135 125v-20h-55v55h55v55h-55v-20" stroke="#000000" stroke-width="20" fill="none"/>
-					<path stroke-linejoin="round" d="m220 160h20v55h-55v-110h55v20" stroke="#000000" stroke-width="20" fill="none"/>
-					<rect stroke-linejoin="round" height="300" width="300" stroke="#000000" y="10" x="10" stroke-width="20" fill="none"/>
-				</svg>
+				{logo}
 				{title}
 			</a>
 			{login_link}
@@ -298,6 +294,7 @@ EOT;
 		return self::renderTemplate(
 			$template,
 			[
+				'logo' => \SGFilehoster\UI_LOGO,
 				'title' => \SGFilehoster\UI_TITLE,
 				'title_url' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\UI_HOMEPAGE]),
 				'login_link' => $linkRendered
@@ -311,7 +308,7 @@ EOT;
 	 */
 	public static function getFooter() : string
 	{
-		return '<footer class="sg-font-small">SG Filehoster &middot; <a href="https://github.com/pianomister">GitHub</a></footer>';
+		return '<footer class="sg-font-small">SG Filehoster &middot; <a href="https://github.com/pianomister/sg-filehoster">GitHub</a></footer>';
 	}
 
 

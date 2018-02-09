@@ -28,7 +28,7 @@ const ACTION_ERROR = 'error'; // show 'error' message in UI
 // UI configuration
 const UI_TITLE = 'SG Filehoster'; // app title shown in UI
 define(__NAMESPACE__ . '\UI_DISPLAY_URL', '//' . $_SERVER['HTTP_HOST'] . $_SERVER['SCRIPT_NAME']); // URL used to build share links for uploads and files. Must point to index.php file
-#const UI_LOGO_PATH = ''; // optional, shows custom logo in UI
+const UI_LOGO = ''; // optional, includes custom logo in UI. Must be an svg or img tag (HTML)
 const UI_SHOW_ADMIN = true; // shows link to admin login page on each page
 const UI_LANGUAGE = 'EN'; // default language for labels in UI
 const UI_HOMEPAGE = ACTION_WELCOME; // default action executed if filehoster index page is called. Should be an action that has a UI view.
