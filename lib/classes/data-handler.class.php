@@ -214,7 +214,7 @@ class DataHandler
 	 */
 	public static function getAllUploadsWithFiles() : DB
 	{
-		return DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->findAll();
+		return DB::table(\SGFilehoster\TABLE_UPLOAD)->with(\SGFilehoster\TABLE_FILE)->orderBy('time_created', 'DESC')->findAll();
 	}
 
 

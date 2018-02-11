@@ -63,6 +63,11 @@ h6,
 	font-size: 1.125rem;
 }
 
+.#{$prefix}font-copy {
+	font-size: 1rem;
+	font-weight: normal;
+}
+
 small,
 .#{$prefix}font-small {
 	font-size: 0.889rem;

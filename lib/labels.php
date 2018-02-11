@@ -12,6 +12,7 @@ const LABELS = [
 		'view.general.copy_action' => 'Copy link',
 		'view.general.copy_success' => 'Copied!',
 		'view.general.copy_error' => 'Copy failed.',
+		'view.general.delete_action' => 'Delete',
 
 		'view.welcome.title' => 'Simply share files.',
 		'view.welcome.body' => 'Upload files, protect access, share the download link.',
@@ -57,6 +58,12 @@ const LABELS = [
 		'view.admin.body' => 'View the upload history, share past uploads and delete files that are not needed anymore.',
 		'view.admin.credentials_required' => 'This access is protected. Please enter your credentials.',
 		'view.admin.error.wrong_credentials' => 'The credentials you entered are not correct.',
+		'view.admin.no_protection' => 'No protection',
+		'view.admin.time_destroyed' => 'Deleted after {time}',
+		'view.admin.password_protection' => 'Protected by password',
+		'view.admin.password_visibility' => 'The password is encrypted and can not be displayed at any time.',
+		'view.admin.message.upload_deleted' => 'The selected upload and all contained files have been deleted.',
+		'view.admin.message.file_deleted' => 'The selected file has been deleted.',
 
 		'view.not_found.title' => 'Not found',
 		'view.not_found.body' => 'The page or file you requested is not available.',
@@ -70,6 +77,9 @@ const LABELS = [
 		'view.general.password_required' => 'Dieser Zugang ist geschützt. Bitte gib das Passwort ein.',
 		'view.general.error.wrong_password' => 'Das eingegebene Passwort ist nicht korrekt.',
 		'view.general.copy_action' => 'Link kopieren',
+		'view.general.copy_success' => 'Kopiert!',
+		'view.general.copy_error' => 'Kopieren fehlgeschlagen.',
+		'view.general.delete_action' => 'Löschen',
 
 		'view.welcome.title' => 'Einfach Dateien teilen.',
 		'view.welcome.body' => 'Eine oder mehrere Dateien hochladen, Zugriff schützen, Download-Link teilen.',
@@ -115,6 +125,12 @@ const LABELS = [
 		'view.admin.body' => 'Zeige alle Uploads, teile vergangene Uploads und lösche Dateien, die nicht mehr benötigt werden.',
 		'view.admin.credentials_required' => 'Dieser Zugang ist geschützt. Bitte gib deine Zugangsdaten ein.',
 		'view.admin.error.wrong_credentials' => 'Die eingegebenen Zugangsdaten sind nicht korrekt.',
+		'view.admin.no_protection' => 'Kein Zugriffsschutz',
+		'view.admin.time_destroyed' => 'Gelöscht nach {time}',
+		'view.admin.password_protection' => 'Passwortgeschützt',
+		'view.admin.password_visibility' => 'Das Passwort ist verschlüsselt und kann nicht nochmals angezeigt werden.',
+		'view.admin.message.upload_deleted' => 'Der gewählte Upload und alle enthaltenen Dateien wurden gelöscht.',
+		'view.admin.message.file_deleted' => 'Die gewählte Datei wurde gelöscht.',
 
 		'view.not_found.title' => 'Nicht gefunden',
 		'view.not_found.body' => 'Die Seite oder Datei, die du aufgerufen hast, ist nicht verfügbar.',

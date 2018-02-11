@@ -308,6 +308,23 @@ class ActionHandler
 				session_start();
 				if (isset($_SESSION['admin_access']) && $_SESSION['admin_access'] === true) {
 					$viewData['password_required'] = false;
+
+					// check for possible delete actions
+					if (isset($_GET[\SGFilehoster\PARAM_SHORT_UPLOAD])) {
+						// delete upload
+						if (\SGFilehoster\DataHandler::uploadExists($data['id'])) {
+							\SGFilehoster\DataHandler::deleteUpload($data['id']);
+							$viewData['error'][] = \SGFilehoster\Labels::get('view.admin.message.upload_deleted');
+						}
+
+					} elseif (isset($_GET[\SGFilehoster\PARAM_SHORT_FILE])) {
+						// delete file
+						if (\SGFilehoster\DataHandler::fileExists($data['id'])) {
+							\SGFilehoster\DataHandler::deleteFile($data['id']);
+							$viewData['error'][] = \SGFilehoster\Labels::get('view.admin.message.file_deleted');
+						}
+					}
+
 					break;
 				}
 

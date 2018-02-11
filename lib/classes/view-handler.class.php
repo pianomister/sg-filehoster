@@ -103,6 +103,106 @@ EOT;
 	}
 
 
+	/**
+	 * Renders HTML to show admin table with file sharing and delete links,
+	 * based on given upload.
+	 */
+	private static function renderAdminTable($upload) : string
+	{
+		$template = <<<EOT
+		<h2 class="sg-align-space-between">
+			{date}
+			<a class="sg-font-copy" href="{delete_link}">{delete_label}</a>
+		</h2>
+		<p class="sg-font-small">{protection}</p>
+		<ul class="sg-file-list sg-file-list--interactive">
+			<li>
+				<a href="{upload_link}">{all_files}</a>
+				<span>
+					<span class="sg-link sg-copy-action"
+								data-copy-success="{copy_success}"
+								data-copy-error="{copy_error}"
+								data-clipboard-text="{upload_link}">{copy_action}</span>
+					<a href="{delete_link}">{delete_label}</a>
+				</span>
+			</li>
+		{files}
+		</ul>
+EOT;
+
+		// get protection methods for upload
+		$protection = [];
+		if ($upload->password !== '') {
+			$protection[] = self::renderTemplate(
+				'<span class="sg-tooltipped sg-tooltipped-s" aria-label="{password_visibility}">{password_protection}</span>',
+				[
+					'password_visibility' => \SGFilehoster\Labels::get('view.admin.password_visibility'),
+					'password_protection' => \SGFilehoster\Labels::get('view.admin.password_protection'),
+				]
+			);
+		}
+		if ($upload->time_destroyed !== -1) {
+			$protection[] = self::renderTemplate(
+				\SGFilehoster\Labels::get('view.admin.time_destroyed'),
+				[
+					'time' => date('d.m.Y H:i', $upload->time_destroyed)
+				]
+			);
+		}
+
+		// render file list
+		$files = $upload->{\SGFilehoster\TABLE_FILE}->findAll();
+		$fileTemplate = <<<EOT
+		<li>
+			<a href="{file_link}">{file_name}</a>
+			<span>
+				<span class="sg-link sg-copy-action"
+							data-copy-success="{copy_success}"
+							data-copy-error="{copy_error}"
+							data-clipboard-text="{file_link}">{copy_action}</span>
+				<a href="{delete_file_link}">{delete_file_label}</a>
+			</span>
+		</li>
+EOT;
+
+		$names = [];
+		foreach($files as $file) {
+			$names[] = self::renderTemplate(
+				$fileTemplate,
+				[
+					'file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
+					'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
+					'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
+					'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
+					'copy_error' => \SGFilehoster\Labels::get('view.general.copy_error'),
+					'delete_file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_ADMIN, \SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
+					'delete_file_label' => \SGFilehoster\Labels::get('view.general.delete_action')
+				]
+			);
+		}
+
+		// render upload admin table
+		return self::renderTemplate(
+			$template,
+			[
+				'date' => date('d.m.Y H:i', $upload->time_created),
+				'delete_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_ADMIN, \SGFilehoster\PARAM_SHORT_UPLOAD => $upload->search_id]),
+				'delete_label' => \SGFilehoster\Labels::get('view.general.delete_action'),
+				'protection' => count($protection) !== 0 ? implode('<br>', $protection) : \SGFilehoster\Labels::get('view.admin.no_protection'),
+				'all_files' => \SGFilehoster\Labels::get('view.upload.all_files'),
+				'upload_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_UPLOAD => $upload->search_id]),
+				'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
+				'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
+				'copy_error' => \SGFilehoster\Labels::get('view.general.copy_error'),
+				'files' => implode('', $names)
+			]
+		);
+	}
+
+
+	/**
+	 * Renders HTML for single download link entry in file list.
+	 */
 	private static function renderDownloadLink($file) : string
 	{
 		$fileTemplate = <<<EOT
@@ -255,11 +355,10 @@ EOT;
 
 		$uploads = \SGFilehoster\DataHandler::getAllUploadsWithFiles();
 		foreach($uploads as $upload) {
-			$data = ['id' => $upload->search_id];
 			$content .= self::renderTemplate(
 				$template,
 				[
-					'upload' => self::renderUploadTable($data)
+					'upload' => self::renderAdminTable($upload)
 				]
 			);
 		}
