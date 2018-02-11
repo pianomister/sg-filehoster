@@ -1,0 +1,138 @@
+@import "variables";
+
+@font-face {
+  font-family: 'SG-Iconfont';
+  src:
+    url('#{$icomoon-font-path}/SG-Iconfont.ttf?wbwyng') format('truetype'),
+    url('#{$icomoon-font-path}/SG-Iconfont.woff?wbwyng') format('woff'),
+    url('#{$icomoon-font-path}/SG-Iconfont.svg?wbwyng#SG-Iconfont') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="sg-icon-"], [class*=" sg-icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'SG-Iconfont' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sg-icon-arrow_up {
+  &:before {
+    content: $sg-icon-arrow_up; 
+  }
+}
+.sg-icon-arrow_down {
+  &:before {
+    content: $sg-icon-arrow_down; 
+  }
+}
+.sg-icon-arrow_left {
+  &:before {
+    content: $sg-icon-arrow_left; 
+  }
+}
+.sg-icon-arrow_right {
+  &:before {
+    content: $sg-icon-arrow_right; 
+  }
+}
+.sg-icon-cloud_up {
+  &:before {
+    content: $sg-icon-cloud_up; 
+  }
+}
+.sg-icon-cloud_down {
+  &:before {
+    content: $sg-icon-cloud_down; 
+  }
+}
+.sg-icon-arrow_in_down {
+  &:before {
+    content: $sg-icon-arrow_in_down; 
+  }
+}
+.sg-icon-close {
+  &:before {
+    content: $sg-icon-close; 
+  }
+}
+.sg-icon-delete {
+  &:before {
+    content: $sg-icon-delete; 
+  }
+}
+.sg-icon-folder {
+  &:before {
+    content: $sg-icon-folder; 
+  }
+}
+.sg-icon-file {
+  &:before {
+    content: $sg-icon-file; 
+  }
+}
+.sg-icon-file_text_data {
+  &:before {
+    content: $sg-icon-file_text_data; 
+  }
+}
+.sg-icon-file_image {
+  &:before {
+    content: $sg-icon-file_image; 
+  }
+}
+.sg-icon-file_music_player {
+  &:before {
+    content: $sg-icon-file_music_player; 
+  }
+}
+.sg-icon-file_player_media {
+  &:before {
+    content: $sg-icon-file_player_media; 
+  }
+}
+.sg-icon-fileboard {
+  &:before {
+    content: $sg-icon-fileboard; 
+  }
+}
+.sg-icon-fileboard_plus {
+  &:before {
+    content: $sg-icon-fileboard_plus; 
+  }
+}
+.sg-icon-profile {
+  &:before {
+    content: $sg-icon-profile; 
+  }
+}
+.sg-icon-lock_open_round {
+  &:before {
+    content: $sg-icon-lock_open_round; 
+  }
+}
+.sg-icon-lock_close_round {
+  &:before {
+    content: $sg-icon-lock_close_round; 
+  }
+}
+.sg-icon-clock {
+  &:before {
+    content: $sg-icon-clock; 
+  }
+}
+.sg-icon-calendar {
+  &:before {
+    content: $sg-icon-calendar; 
+  }
+}
+

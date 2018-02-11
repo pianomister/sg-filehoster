@@ -5,10 +5,15 @@
 @import './mixins';
 @import './variables';
 
+// CSS reset
 @import '../../node_modules/normalize.css/normalize';
+
+// icons
+@import '../icons/style';
 
 @import './base/base';
 @import './base/typography';
+@import './base/icons';
 @import './base/links';
 @import './base/forms';
 

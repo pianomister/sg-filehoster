@@ -40,7 +40,7 @@ function showTooltip(elem, msg) {
 const inputs = document.querySelectorAll('.sg-input-file input[type="file"]');
 Array.prototype.forEach.call(inputs, function (input) {
 	const label = input.nextElementSibling,
-		labelVal = label.innerHTML;
+		labelVal = label.querySelector('span').innerHTML;
 
 	input.addEventListener('change', function (e) {
 		let fileName = '';
@@ -51,9 +51,9 @@ Array.prototype.forEach.call(inputs, function (input) {
 		}
 
 		if (fileName) {
-			label.innerHTML = fileName;
+			label.querySelector('span').innerHTML = fileName;
 		} else {
-			label.innerHTML = labelVal;
+			label.querySelector('span').innerHTML = labelVal;
 		}
 	});
 });

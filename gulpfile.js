@@ -16,11 +16,13 @@ var util = require('gulp-util');
 var paths = {
 	src: {
 		js: 'src/js/',
-		scss: 'src/scss/'
+		scss: 'src/scss/',
+		icons: 'src/icons/fonts/'
 	},
 	dist: {
 		js: 'dist/',
-		css: 'dist/'
+		css: 'dist/',
+		icons: 'dist/fonts/'
 	}
 };
 
@@ -42,10 +44,17 @@ gulp.task('sass', function() {
 	return gulp.src(paths.src.scss + 'main.scss')
 		.pipe(sass())
 		.pipe(rename('main.css'))
-		.pipe(gulp.dest(paths.dist.css))
+		//.pipe(gulp.dest(paths.dist.css))
 		//.pipe(rename('main.min.css'))
-		//.pipe(cleanCSS())
+		.pipe(cleanCSS())
 		.pipe(gulp.dest(paths.dist.css))
+		.on('error', util.log);
+});
+
+// copy icons
+gulp.task('icons', function() {
+	return gulp.src(paths.src.icons + '*')
+		.pipe(gulp.dest(paths.dist.icons))
 		.on('error', util.log);
 });
 
@@ -93,4 +102,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'scripts:default']);
+gulp.task('default', ['icons', 'sass', 'scripts:default']);

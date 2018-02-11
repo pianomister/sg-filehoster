@@ -15,16 +15,14 @@
 		padding: .5rem;
 		word-wrap: break-word;
 		background-color: transparent;
-		transition: background-color $transition, padding $transition;
+		transition: background-color $transition;
 	}
 
 	&--interactive {
 
 		li {
-			padding: .5rem 0;
 
 			&:hover {
-				padding: .5rem;
 				background-color: var(--color-grey6);
 			}
 		}

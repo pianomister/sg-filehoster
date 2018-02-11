@@ -25,4 +25,4 @@ Finally, upload all files to your webspace, and start using it! You may omit the
 ### TODO
 - statistics for downloads / files?
 - migrate gulp to webpack
-- add icons in UI
+- theming

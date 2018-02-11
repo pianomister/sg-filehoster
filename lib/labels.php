@@ -62,7 +62,7 @@ const LABELS = [
 		'view.admin.no_protection' => 'No protection',
 		'view.admin.time_destroyed' => 'Deleted after {time}',
 		'view.admin.password_protection' => 'Protected by password',
-		'view.admin.password_visibility' => 'The password is encrypted and can not be displayed at any time.',
+		'view.admin.password_visibility' => 'The password is encrypted and&#013;&#010; can not be displayed at any time.',
 		'view.admin.message.upload_deleted' => 'The selected upload and all contained files have been deleted.',
 		'view.admin.message.file_deleted' => 'The selected file has been deleted.',
 
@@ -130,7 +130,7 @@ const LABELS = [
 		'view.admin.no_protection' => 'Kein Zugriffsschutz',
 		'view.admin.time_destroyed' => 'Gelöscht nach {time}',
 		'view.admin.password_protection' => 'Passwortgeschützt',
-		'view.admin.password_visibility' => 'Das Passwort ist verschlüsselt und kann nicht nochmals angezeigt werden.',
+		'view.admin.password_visibility' => 'Das Passwort ist verschlüsselt und&#013;&#010; kann nicht nochmals angezeigt werden.',
 		'view.admin.message.upload_deleted' => 'Der gewählte Upload und alle enthaltenen Dateien wurden gelöscht.',
 		'view.admin.message.file_deleted' => 'Die gewählte Datei wurde gelöscht.',
 

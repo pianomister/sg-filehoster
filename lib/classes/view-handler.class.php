@@ -28,6 +28,35 @@ class ViewHandler
 
 
 	/**
+	 * Checks MIME type for given file, and determines best-fit icon
+	 * to be displayed for that file.
+	 */
+	private static function getFileIcon($file) : string
+	{
+		$path = realpath(\SGFilehoster\UPLOAD_PATH . $file->file_name);
+		$mime = mime_content_type($path);
+
+		// text document
+		if (preg_match('/^application\/pdf/', $mime) === 1
+				|| preg_match('/^text/', $mime) === 1) {
+			return 'file_text_data';
+		// image
+		} elseif (preg_match('/^image/', $mime) === 1) {
+			return 'file_image';
+		// audio
+		} elseif (preg_match('/^audio/', $mime) === 1) {
+			return 'file_music_player';
+		// video
+		} elseif (preg_match('/^video/', $mime) === 1) {
+			return 'file_player_media';
+		}
+
+		// default: simple file icon
+		return 'file';
+	}
+
+
+	/**
 	 * Renders HTML displaying errors, based on view data provided for getView().
 	 * Style may be set as 'error' (default, has error layout) or 'plain' (just text with line breaks)
 	 */
@@ -67,11 +96,12 @@ class ViewHandler
 
 				$fileTemplate = <<<EOT
 				<li>
-					<a href="{file_link}">{file_name}</a>
-					<span class="sg-link sg-copy-action"
+					<a href="{file_link}" class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</a>
+					<span class="sg-link sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
-								data-clipboard-text="{file_link}">{copy_action}</span>
+								data-clipboard-text="{file_link}"
+								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
 				</li>
 EOT;
 
@@ -81,6 +111,7 @@ EOT;
 							$fileTemplate,
 							[
 								'file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
+								'file_icon' => self::getFileIcon($file),
 								'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
 								'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
 								'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
@@ -112,18 +143,21 @@ EOT;
 		$template = <<<EOT
 		<h2 class="sg-align-space-between">
 			{date}
-			<a class="sg-font-copy" href="{delete_link}">{delete_label}</a>
+			<a class="sg-font-copy sg-text-icon" href="{delete_link}"><i class="sg-icon-delete"></i>{delete_label}</a>
 		</h2>
 		<p class="sg-font-small">{protection}</p>
 		<ul class="sg-file-list sg-file-list--interactive">
 			<li>
-				<a href="{upload_link}">{all_files}</a>
+				<a class="sg-text-icon" href="{upload_link}"><i class="sg-icon-folder"></i>{all_files}</a>
 				<span>
-					<span class="sg-link sg-copy-action"
+					<span class="sg-link sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
-								data-clipboard-text="{upload_link}">{copy_action}</span>
-					<a href="{delete_link}">{delete_label}</a>
+								data-clipboard-text="{upload_link}"
+								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+					<a href="{delete_link}"
+						 title="{delete_label}"
+						 class="sg-action-icon"><i class="sg-icon-delete"></i></a>
 				</span>
 			</li>
 		{files}
@@ -134,7 +168,7 @@ EOT;
 		$protection = [];
 		if ($upload->password !== '') {
 			$protection[] = self::renderTemplate(
-				'<span class="sg-tooltipped sg-tooltipped-s" aria-label="{password_visibility}">{password_protection}</span>',
+				'<span class="sg-text-icon sg-tooltipped sg-tooltipped-s" aria-label="{password_visibility}"><i class="sg-icon-lock_close_round"></i>{password_protection}</span>',
 				[
 					'password_visibility' => \SGFilehoster\Labels::get('view.admin.password_visibility'),
 					'password_protection' => \SGFilehoster\Labels::get('view.admin.password_protection'),
@@ -143,7 +177,7 @@ EOT;
 		}
 		if ($upload->time_destroyed !== -1) {
 			$protection[] = self::renderTemplate(
-				\SGFilehoster\Labels::get('view.admin.time_destroyed'),
+				'<span class="sg-text-icon"><i class="sg-icon-clock"></i>' . \SGFilehoster\Labels::get('view.admin.time_destroyed') . '</span>',
 				[
 					'time' => date('d.m.Y H:i', $upload->time_destroyed)
 				]
@@ -154,13 +188,16 @@ EOT;
 		$files = $upload->{\SGFilehoster\TABLE_FILE}->findAll();
 		$fileTemplate = <<<EOT
 		<li>
-			<a href="{file_link}">{file_name}</a>
+			<a href="{file_link}" class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</a>
 			<span>
-				<span class="sg-link sg-copy-action"
+				<span class="sg-link sg-copy-action sg-action-icon"
 							data-copy-success="{copy_success}"
 							data-copy-error="{copy_error}"
-							data-clipboard-text="{file_link}">{copy_action}</span>
-				<a href="{delete_file_link}">{delete_file_label}</a>
+							data-clipboard-text="{file_link}"
+							title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+				<a href="{delete_file_link}"
+					 title="{delete_file_label}"
+					 class="sg-action-icon"><i class="sg-icon-delete"></i></a>
 			</span>
 		</li>
 EOT;
@@ -171,6 +208,7 @@ EOT;
 				$fileTemplate,
 				[
 					'file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
+					'file_icon' => self::getFileIcon($file),
 					'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
 					'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
 					'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
@@ -188,7 +226,7 @@ EOT;
 				'date' => date('d.m.Y H:i', $upload->time_created),
 				'delete_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_ADMIN, \SGFilehoster\PARAM_SHORT_UPLOAD => $upload->search_id]),
 				'delete_label' => \SGFilehoster\Labels::get('view.general.delete_action'),
-				'protection' => count($protection) !== 0 ? implode('<br>', $protection) : \SGFilehoster\Labels::get('view.admin.no_protection'),
+				'protection' => count($protection) !== 0 ? implode('<br>', $protection) : '<span class="sg-text-icon"><i class="sg-icon-lock_open_round"></i>' . \SGFilehoster\Labels::get('view.admin.no_protection') . '</span>',
 				'all_files' => \SGFilehoster\Labels::get('view.upload.all_files'),
 				'upload_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_UPLOAD => $upload->search_id]),
 				'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
@@ -208,8 +246,8 @@ EOT;
 		$fileTemplate = <<<EOT
 		<li>
 			<a href="{file_link}" class="sg-file-list__action">
-				<span>{file_name}</span>
-				<span>{download_action}</span>
+				<span class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</span>
+				<span class="sg-text-icon"><i class="sg-icon-cloud_down"></i>{download_action}</span>
 			</a>
 		</li>
 EOT;
@@ -221,6 +259,7 @@ EOT;
 							\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_DOWNLOAD,
 							\SGFilehoster\PARAM_SHORT_FILE => $file->search_id
 						]),
+						'file_icon' => self::getFileIcon($file),
 						'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
 						'download_action' => \SGFilehoster\Labels::get('view.download.button_download')
 					]
@@ -314,11 +353,11 @@ EOT;
 		<article>
 			<form action="{action}" method="post">
 				<p>
-					<label for="username">{field_username}</label>
+					<label for="username" class="sg-text-icon"><i class="sg-icon-profile"></i>{field_username}</label>
 					<input name="username" type="text" id="username" placeholder="{field_username}" />
 				</p>
 				<p>
-					<label for="password">{field_password}</label>
+					<label for="password" class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</label>
 					<input name="password" type="password" id="password" placeholder="{field_password}" />
 				</p>
 				<div class="sg-button-group">
@@ -448,7 +487,7 @@ EOT;
 						<p class="sg-input-file">
 							<input name="files[]" id="files" type="file" multiple
 										 data-multiple-caption="{files_selected}" />
-							<label for="files">{field_files}</label>
+							<label for="files"><i class="sg-icon-cloud_up"></i><span>{field_files}</span></label>
 							<small>{size_limit} {size_limit_value}</small>
 						</p>
 						<p>
@@ -495,7 +534,7 @@ EOT;
 EOT;
 
 				$passwordTemplate = <<<EOT
-				<label for="password">{field_password}</label>
+				<label for="password" class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</label>
 				<input name="password" type="password" id="password" />
 EOT;
 
@@ -545,11 +584,12 @@ EOT;
 						<h3 class="sg-h4">{share_all_files}</h3>
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
-								<a href="{upload_link}">{all_files}</a>
-								<span class="sg-link sg-copy-action"
+								<a href="{upload_link}" class="sg-text-icon"><i class="sg-icon-folder"></i>{all_files}</a>
+								<span class="sg-link sg-copy-action sg-action-icon"
 											data-copy-success="{copy_success}"
 											data-copy-error="{copy_error}"
-											data-clipboard-text="{upload_link}">{copy_action}</span>
+											data-clipboard-text="{upload_link}"
+											title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
 							</li>
 						</ul>
 						<h3 class="sg-h4">{share_individual_files}</h3>

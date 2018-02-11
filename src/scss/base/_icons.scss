@@ -1,0 +1,32 @@
+///
+/// ICONS
+/// Additional setup for icon font
+///
+
+// more stable base style for icons
+[class^="sg-icon-"],
+[class*=" sg-icon-"] {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1em;
+	height: 1em;
+}
+
+// larger icon for actions
+.#{$prefix}action-icon {
+	font-size: 1.25em;
+
+	& + & {
+		margin-left: .5rem;
+	}
+}
+
+// icon with text
+.#{$prefix}text-icon {
+
+	[class^="sg-icon-"],
+	[class*=" sg-icon-"] {
+		margin-right: .5em;
+	}
+}
