@@ -30,6 +30,7 @@ $viewData = FH\SGFilehoster::executeAction($action, $data);
 $template = file_get_contents(__DIR__ . '/template.html');
 $template = str_replace('{TITLE}', FH\UI_TITLE, $template);
 $template = str_replace('{DESCRIPTION}', FH\Labels::get('view.welcome.title'), $template);
+$template = str_replace('{THEME}', FH\SGFilehoster::getTheme(), $template);
 $content = FH\SGFilehoster::getHeader();
 $content .= FH\SGFilehoster::getView($viewData['action'], $viewData);
 $content .= FH\SGFilehoster::getFooter();

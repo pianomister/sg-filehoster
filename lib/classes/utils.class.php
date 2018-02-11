@@ -37,6 +37,15 @@ class Utils
 
 
 	/**
+	 * Returns CSS classes for configured theme.
+	 */
+	public static function getTheme() : string
+	{
+		return 'sg-theme-' . \SGFilehoster\UI_THEME_COLOR . ' sg-theme-' . \SGFilehoster\UI_THEME_STYLE;
+	}
+
+
+	/**
 	 * Returns a random string with given length, by default created based on 16 bytes.
 	 */
 	public static function getRandomString(int $length = 16) : string

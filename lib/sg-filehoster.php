@@ -63,6 +63,15 @@ class SGFilehoster
 
 
 	/**
+	 * Returns CSS classes for configured theme.
+	 */
+	public static function getTheme() : string
+	{
+		return \SGFilehoster\Utils::getTheme();
+	}
+
+
+	/**
 	 * Returns view for page header.
 	 */
 	public static function getHeader() : string

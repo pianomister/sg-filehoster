@@ -34,6 +34,8 @@ const UI_SHOW_ADMIN = true; // shows link to admin login page on each page
 const UI_LANGUAGE = ['en', 'de']; // default language for labels in UI. Either a string (e.g. 'en') to set language, or array (e.g. ['en', 'de']) to determine best fit.
 const UI_HOMEPAGE = ACTION_WELCOME; // default action executed if filehoster index page is called. Should be an action that has a UI view.
 const UI_WELCOME_SHOW_UPLOAD_FORM = true; // true if upload form should be included within the welcome page
+const UI_THEME_COLOR = 'grey'; // theme base color, available themes are 'blue' (default), 'grey', 'green'.
+const UI_THEME_STYLE = 'light'; // theme style, one of 'light' (default) or 'dark'
 
 define(__NAMESPACE__ . '\DATA_PATH', __DIR__ . '/../data/'); // directory where Lazer config files are stored, must end with a slash
 const UPLOAD_PATH = DATA_PATH . 'uploads/'; // directory where uploads are stored, must end with a slash
