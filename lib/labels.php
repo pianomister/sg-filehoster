@@ -4,7 +4,7 @@ declare(strict_types=1);
 namespace SGFilehoster;
 
 const LABELS = [
-	'EN' => [
+	'en' => [
 		'view.general.login' => 'Admin',
 		'view.general.button_login' => 'Sign in',
 		'view.general.button_logout' => 'Log out',
@@ -72,7 +72,7 @@ const LABELS = [
 		'view.error.title' => 'Something went wrong',
 		'view.error.body' => 'An error occurred.'
 	],
-	'DE' => [
+	'de' => [
 		'view.general.login' => 'Admin',
 		'view.general.button_login' => 'Anmelden',
 		'view.general.button_logout' => 'Abmelden',
