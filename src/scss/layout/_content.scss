@@ -29,3 +29,11 @@ main {
 		margin-top: 2rem;
 	}
 }
+
+.#{$prefix}show-tablet {
+	display: none;
+
+	@include -sg-breakpoint(tablet) {
+		display: initial;
+	}
+}

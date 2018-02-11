@@ -35,4 +35,20 @@
 		justify-content: space-between;
 		width: 100%;
 	}
+
+	&__file {
+		flex: 0 1 auto;
+		overflow: hidden;
+		
+		span {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	&__tools {
+		flex: none;
+		padding-left: .5rem;
+	}
 }

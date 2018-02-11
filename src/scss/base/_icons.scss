@@ -24,6 +24,8 @@
 
 // icon with text
 .#{$prefix}text-icon {
+	display: inline-flex;
+	align-items: center;
 
 	[class^="sg-icon-"],
 	[class*=" sg-icon-"] {

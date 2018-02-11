@@ -96,8 +96,8 @@ class ViewHandler
 
 				$fileTemplate = <<<EOT
 				<li>
-					<a href="{file_link}" class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</a>
-					<span class="sg-link sg-copy-action sg-action-icon"
+					<a href="{file_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-{file_icon}"></i><span>{file_name}</span></a>
+					<span class="sg-file-list__tools sg-link sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
 								data-clipboard-text="{file_link}"
@@ -148,8 +148,8 @@ EOT;
 		<p class="sg-font-small">{protection}</p>
 		<ul class="sg-file-list sg-file-list--interactive">
 			<li>
-				<a class="sg-text-icon" href="{upload_link}"><i class="sg-icon-folder"></i>{all_files}</a>
-				<span>
+				<a class="sg-file-list__file sg-text-icon" href="{upload_link}"><i class="sg-icon-folder"></i><span>{all_files}</span></a>
+				<span class="sg-file-list__tools">
 					<span class="sg-link sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
@@ -188,8 +188,8 @@ EOT;
 		$files = $upload->{\SGFilehoster\TABLE_FILE}->findAll();
 		$fileTemplate = <<<EOT
 		<li>
-			<a href="{file_link}" class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</a>
-			<span>
+			<a href="{file_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-{file_icon}"></i><span>{file_name}</span></a>
+			<span class="sg-file-list__tools">
 				<span class="sg-link sg-copy-action sg-action-icon"
 							data-copy-success="{copy_success}"
 							data-copy-error="{copy_error}"
@@ -246,8 +246,8 @@ EOT;
 		$fileTemplate = <<<EOT
 		<li>
 			<a href="{file_link}" class="sg-file-list__action">
-				<span class="sg-text-icon"><i class="sg-icon-{file_icon}"></i>{file_name}</span>
-				<span class="sg-text-icon"><i class="sg-icon-cloud_down"></i>{download_action}</span>
+				<span class="sg-file-list__file sg-text-icon"><i class="sg-icon-{file_icon}"></i><span>{file_name}</span></span>
+				<span class="sg-file-list__tools sg-text-icon"><i class="sg-icon-cloud_down"></i><span class="sg-show-tablet">{download_action}</span></span>
 			</a>
 		</li>
 EOT;
@@ -584,8 +584,8 @@ EOT;
 						<h3 class="sg-h4">{share_all_files}</h3>
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
-								<a href="{upload_link}" class="sg-text-icon"><i class="sg-icon-folder"></i>{all_files}</a>
-								<span class="sg-link sg-copy-action sg-action-icon"
+								<a href="{upload_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-folder"></i><span>{all_files}</span></a>
+								<span class="sg-file-list__tools sg-link sg-copy-action sg-action-icon"
 											data-copy-success="{copy_success}"
 											data-copy-error="{copy_error}"
 											data-clipboard-text="{upload_link}"
