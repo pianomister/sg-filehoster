@@ -41,6 +41,8 @@
 	opacity: 1;
 	transition: opacity $transition;
 	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
 
 	&:hover,
 	&:active,

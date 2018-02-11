@@ -10,6 +10,8 @@ const LABELS = [
 		'view.general.password_required' => 'This access is protected. Please enter the password.',
 		'view.general.error.wrong_password' => 'The password you entered is not correct.',
 		'view.general.copy_action' => 'Copy link',
+		'view.general.copy_success' => 'Copied!',
+		'view.general.copy_error' => 'Copy failed.',
 
 		'view.welcome.title' => 'Simply share files.',
 		'view.welcome.body' => 'Upload files, protect access, share the download link.',

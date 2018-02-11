@@ -1,0 +1,196 @@
+///
+/// TOOLTIPS
+/// Based on primer-tooltips npm package
+///
+
+.#{$prefix}tooltipped {
+  position: relative;
+}
+
+// This is the tooltip bubble
+.#{$prefix}tooltipped::after {
+	@extend small;
+
+  position: absolute;
+  z-index: 100;
+  display: none;
+  padding: .2rem .5rem;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: var(--color-shade6);
+  text-align: center;
+  text-decoration: none;
+  text-shadow: none;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: break-word;
+  white-space: pre;
+  pointer-events: none;
+  content: attr(aria-label);
+  background: var(--color-shade1);
+  border-radius: .2rem;
+  opacity: 0;
+}
+
+// This is the tooltip arrow
+.#{$prefix}tooltipped::before {
+  position: absolute;
+  z-index: 101;
+  display: none;
+  width: 0;
+  height: 0;
+  color: var(--color-shade1);
+  pointer-events: none;
+  content: "";
+  border: 6px solid transparent;
+  opacity: 0;
+}
+
+// delay animation for tooltip
+@keyframes tooltip-appear {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+// This will indicate when we'll activate the tooltip
+.#{$prefix}tooltipped:hover,
+.#{$prefix}tooltipped:active,
+.#{$prefix}tooltipped:focus {
+  &::before,
+  &::after {
+    display: inline-block;
+    text-decoration: none;
+    animation-name: tooltip-appear;
+    animation-duration: .1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in;
+    animation-delay: .1s;
+  }
+}
+
+.#{$prefix}tooltipped-no-delay:hover,
+.#{$prefix}tooltipped-no-delay:active,
+.#{$prefix}tooltipped-no-delay:focus {
+  &::before,
+  &::after {
+    animation-delay: 0s;
+  }
+}
+
+// Tooltipped south
+.#{$prefix}tooltipped-s,
+.#{$prefix}tooltipped-se,
+.#{$prefix}tooltipped-sw {
+  &::after {
+    top: 100%;
+    right: 50%;
+    margin-top: 6px;
+  }
+
+  &::before {
+    top: auto;
+    right: 50%;
+    bottom: -7px;
+    margin-right: -6px;
+    border-bottom-color: var(--color-shade1);
+  }
+}
+
+.#{$prefix}tooltipped-se {
+  &::after {
+    right: auto;
+    left: 50%;
+    margin-left: -.3rem;
+  }
+}
+
+.#{$prefix}tooltipped-sw::after {
+  margin-right: -.3rem;
+}
+
+// Tooltips above the object
+.#{$prefix}tooltipped-n,
+.#{$prefix}tooltipped-ne,
+.#{$prefix}tooltipped-nw {
+  &::after {
+    right: 50%;
+    bottom: 100%;
+    margin-bottom: 6px;
+  }
+
+  &::before {
+    top: -7px;
+    right: 50%;
+    bottom: auto;
+    margin-right: -6px;
+    border-top-color: var(--color-shade1);
+  }
+}
+
+.#{$prefix}tooltipped-ne {
+  &::after {
+    right: auto;
+    left: 50%;
+    margin-left: -.3rem;
+  }
+}
+
+.#{$prefix}tooltipped-nw::after {
+  margin-right: -.3rem;
+}
+
+// Move the tooltip body to the center of the object.
+.#{$prefix}tooltipped-s::after,
+.#{$prefix}tooltipped-n::after {
+  transform: translateX(50%);
+}
+
+// Tooltipped to the left
+.#{$prefix}tooltipped-w {
+  &::after {
+    right: 100%;
+    bottom: 50%;
+    margin-right: 6px;
+    transform: translateY(50%);
+  }
+
+  &::before {
+    top: 50%;
+    bottom: 50%;
+    left: -7px;
+    margin-top: -6px;
+    border-left-color: var(--color-shade1);
+  }
+}
+
+// tooltipped to the right
+.#{$prefix}tooltipped-e {
+  &::after {
+    bottom: 50%;
+    left: 100%;
+    margin-left: 6px;
+    transform: translateY(50%);
+  }
+
+  &::before {
+    top: 50%;
+    right: -7px;
+    bottom: 50%;
+    margin-top: -6px;
+    border-right-color: var(--color-shade1);
+  }
+}
+
+// Sticky tooltips
+//
+// Always show the tooltip.
+.#{$prefix}tooltipped-sticky {
+  &::before,
+  &::after {
+    display: inline-block;
+  }
+}

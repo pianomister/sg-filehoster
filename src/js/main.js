@@ -4,12 +4,36 @@
  */
 
 // CLIPBOARD ACTIONS
-const clipboard = new Clipboard('.sg-copy-action');
+const copySelector = '.sg-copy-action';
+const clipboard = new Clipboard(copySelector);
 clipboard.on('success', function(e) {
-	// remove focus on copy element, because other clipboard actions
-	// else might not work afterwards
-	document.focus();
+	msg = e.trigger.getAttribute('data-copy-success');
+	showTooltip(e.trigger, msg);
 });
+clipboard.on('error', function(e) {
+	msg = e.trigger.getAttribute('data-copy-error');
+	showTooltip(e.trigger, msg);
+});
+
+// TOOLTIPS FOR CLIPBOARD ACTIONS
+const btns = document.querySelectorAll(copySelector);
+for (let i = 0; i < btns.length; i++) {
+    btns[i].addEventListener('mouseleave', clearTooltip);
+    btns[i].addEventListener('blur', clearTooltip);
+}
+
+function clearTooltip(e) {
+    e.target.classList.remove('sg-tooltipped', 'sg-tooltipped-s');
+		e.target.removeAttribute('aria-label');
+		// when copying multiple links, focus on previous element
+		// prevents copy of the following link
+		document.firstElementChild.focus();
+}
+
+function showTooltip(elem, msg) {
+    elem.classList.add('sg-tooltipped', 'sg-tooltipped-s');
+    elem.setAttribute('aria-label', msg);
+}
 
 // UPLOAD FORM
 // file input

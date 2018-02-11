@@ -19,7 +19,8 @@ main {
 			margin-top: 0;
 		}
 
-		a {
+		a,
+		.#{$prefix}link {
 			color: var(--color-link-content);
 		}
 	}

@@ -35,7 +35,7 @@ class ViewHandler
 	{
 		// check if errors exist in view data
 		if (array_key_exists('error', $data) && count($data['error']) !== 0) {
-			$template = '<p style="color: red">{errors}</p>';
+			$template = '<p class="sg-message sg-message--error">{errors}</p>';
 			if ($style === 'plain') {
 				$template = '{errors}';
 			}
@@ -68,7 +68,10 @@ class ViewHandler
 				$fileTemplate = <<<EOT
 				<li>
 					<a href="{file_link}">{file_name}</a>
-					<span class="sg-link sg-copy-action" data-clipboard-text="{file_link}">{copy_action}</span>
+					<span class="sg-link sg-copy-action"
+								data-copy-success="{copy_success}"
+								data-copy-error="{copy_error}"
+								data-clipboard-text="{file_link}">{copy_action}</span>
 				</li>
 EOT;
 
@@ -80,6 +83,8 @@ EOT;
 								'file_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_FILE => $file->search_id]),
 								'file_name' => \SGFilehoster\Utils::escapeHtml($file->original_name),
 								'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
+								'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
+								'copy_error' => \SGFilehoster\Labels::get('view.general.copy_error')
 							]
 						);
 				}
@@ -442,7 +447,10 @@ EOT;
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
 								<a href="{upload_link}">{all_files}</a>
-								<span class="sg-link sg-copy-action" data-clipboard-text="{upload_link}">{copy_action}</span>
+								<span class="sg-link sg-copy-action"
+											data-copy-success="{copy_success}"
+											data-copy-error="{copy_error}"
+											data-clipboard-text="{upload_link}">{copy_action}</span>
 							</li>
 						</ul>
 						<h3 class="sg-h4">{share_individual_files}</h3>
@@ -459,6 +467,8 @@ EOT;
 						'all_files' => \SGFilehoster\Labels::get('view.upload.all_files'),
 						'upload_link' => \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_SHORT_UPLOAD => $data['id']]),
 						'copy_action' => \SGFilehoster\Labels::get('view.general.copy_action'),
+						'copy_success' => \SGFilehoster\Labels::get('view.general.copy_success'),
+						'copy_error' => \SGFilehoster\Labels::get('view.general.copy_error'),
 						'errors' => self::renderErrors($data),
 						'share_individual_files' => \SGFilehoster\Labels::get('view.upload.share_individual_files'),
 						'table' => self::renderUploadTable($data)
