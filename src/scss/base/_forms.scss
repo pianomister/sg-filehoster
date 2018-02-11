@@ -35,7 +35,7 @@
 
 	border: 0;
 	border-radius: 0;
-	padding: .5rem 2rem;
+	padding: .5em 2em;
 	background-color: var(--color-primary);
 	color: var(--color-bg-content);
 	opacity: 1;
@@ -60,6 +60,7 @@ textarea {
 }
 
 // button styling
+.#{$prefix}button,
 button,
 input[type='reset'],
 input[type='submit'] {

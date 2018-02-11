@@ -23,9 +23,6 @@ For both, you can use the helper script `lib/pwgenerator.php`, which generates a
 Finally, upload all files to your webspace, and start using it! You may omit the package and build config files when uploading the library.
 
 ### TODO
-- add more info in admin panel (protection methods, creation date)
-- delete files and uploads from admin panel
-- admin logout link
 - statistics for downloads / files?
 - migrate gulp to webpack
 - add icons in UI

@@ -635,7 +635,10 @@ EOT;
 
 				$template = <<<EOT
 				<main>
-					<h1>{title}</h1>
+					<div class="sg-align-space-between">
+						<h1>{title}</h1>
+						{logout_button}
+					</div>
 					{errors}
 					{content}
 				</main>
@@ -645,6 +648,7 @@ EOT;
 					$template,
 					[
 						'title' => \SGFilehoster\Labels::get('view.admin.title'),
+						'logout_button' => $data['password_required'] ? '' : '<a href="' . \SGFilehoster\Utils::getDisplayUrl([\SGFilehoster\PARAM_ACTION => \SGFilehoster\ACTION_LOGOUT]) . '">' . \SGFilehoster\Labels::get('view.general.button_logout') . '</a>',
 						'errors' => self::renderErrors($data),
 						'content' => $data['password_required'] ? self::renderLoginForm() : self::renderAdmin($data)
 					]

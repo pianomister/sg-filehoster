@@ -5,8 +5,9 @@ namespace SGFilehoster;
 
 const LABELS = [
 	'EN' => [
-		'view.general.login' => 'Log in',
+		'view.general.login' => 'Admin',
 		'view.general.button_login' => 'Sign in',
+		'view.general.button_logout' => 'Log out',
 		'view.general.password_required' => 'This access is protected. Please enter the password.',
 		'view.general.error.wrong_password' => 'The password you entered is not correct.',
 		'view.general.copy_action' => 'Copy link',
@@ -72,8 +73,9 @@ const LABELS = [
 		'view.error.body' => 'An error occurred.'
 	],
 	'DE' => [
-		'view.general.login' => 'Login',
+		'view.general.login' => 'Admin',
 		'view.general.button_login' => 'Anmelden',
+		'view.general.button_logout' => 'Abmelden',
 		'view.general.password_required' => 'Dieser Zugang ist geschützt. Bitte gib das Passwort ein.',
 		'view.general.error.wrong_password' => 'Das eingegebene Passwort ist nicht korrekt.',
 		'view.general.copy_action' => 'Link kopieren',

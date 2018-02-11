@@ -348,6 +348,17 @@ class ActionHandler
 				}
 
 				break;
+
+
+			case ACTION_LOGOUT:
+				// check for available admin session
+				session_start();
+				if (isset($_SESSION['admin_access']) && $_SESSION['admin_access'] === true) {
+					// do not destroy session to keep any file/upload access tokens
+					$_SESSION['admin_access'] = false;
+					$viewData['action'] = \SGFilehoster\UI_HOMEPAGE;
+				}
+				break;
 		}
 
 		return $viewData;

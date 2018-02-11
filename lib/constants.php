@@ -16,6 +16,7 @@ const PARAM_SHORT_FILE = 'f';
 
 // strings used as values for 'action' URL param
 const ACTION_ADMIN = 'admin';
+const ACTION_LOGOUT = 'logout';
 const ACTION_WELCOME = 'welcome'; // welcome page / home page
 const ACTION_UPLOAD_FORM = 'upload_form'; // show upload form in UI
 const ACTION_UPLOAD = 'upload'; // upload action, called by upload form
