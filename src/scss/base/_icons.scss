@@ -15,6 +15,7 @@
 
 // larger icon for actions
 .#{$prefix}action-icon {
+	padding: .25em;
 	font-size: 1.25em;
 
 	& + & {

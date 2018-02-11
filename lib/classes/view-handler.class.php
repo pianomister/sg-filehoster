@@ -97,11 +97,11 @@ class ViewHandler
 				$fileTemplate = <<<EOT
 				<li>
 					<a href="{file_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-{file_icon}"></i><span>{file_name}</span></a>
-					<span class="sg-file-list__tools sg-link sg-copy-action sg-action-icon"
+					<button class="sg-file-list__tools sg-link sg-button--unstyled sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
 								data-clipboard-text="{file_link}"
-								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></button>
 				</li>
 EOT;
 
@@ -150,11 +150,11 @@ EOT;
 			<li>
 				<a class="sg-file-list__file sg-text-icon" href="{upload_link}"><i class="sg-icon-folder"></i><span>{all_files}</span></a>
 				<span class="sg-file-list__tools">
-					<span class="sg-link sg-copy-action sg-action-icon"
+					<button class="sg-link sg-button--unstyled sg-copy-action sg-action-icon"
 								data-copy-success="{copy_success}"
 								data-copy-error="{copy_error}"
 								data-clipboard-text="{upload_link}"
-								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+								title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></button>
 					<a href="{delete_link}"
 						 title="{delete_label}"
 						 class="sg-action-icon"><i class="sg-icon-delete"></i></a>
@@ -190,11 +190,11 @@ EOT;
 		<li>
 			<a href="{file_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-{file_icon}"></i><span>{file_name}</span></a>
 			<span class="sg-file-list__tools">
-				<span class="sg-link sg-copy-action sg-action-icon"
+				<button class="sg-link sg-button--unstyled sg-copy-action sg-action-icon"
 							data-copy-success="{copy_success}"
 							data-copy-error="{copy_error}"
 							data-clipboard-text="{file_link}"
-							title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+							title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></button>
 				<a href="{delete_file_link}"
 					 title="{delete_file_label}"
 					 class="sg-action-icon"><i class="sg-icon-delete"></i></a>
@@ -585,11 +585,11 @@ EOT;
 						<ul class="sg-file-list sg-file-list--interactive">
 							<li>
 								<a href="{upload_link}" class="sg-file-list__file sg-text-icon"><i class="sg-icon-folder"></i><span>{all_files}</span></a>
-								<span class="sg-file-list__tools sg-link sg-copy-action sg-action-icon"
+								<button class="sg-file-list__tools sg-link sg-button--unstyled sg-copy-action sg-action-icon"
 											data-copy-success="{copy_success}"
 											data-copy-error="{copy_error}"
 											data-clipboard-text="{upload_link}"
-											title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></span>
+											title="{copy_action}"><i class="sg-icon-fileboard_plus"></i></button>
 							</li>
 						</ul>
 						<h3 class="sg-h4">{share_individual_files}</h3>

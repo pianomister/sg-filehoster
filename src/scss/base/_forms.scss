@@ -58,7 +58,7 @@
 }
 
 // general form styling
-button,
+button:not(.#{$prefix}button--unstyled),
 input,
 select,
 textarea {
@@ -67,7 +67,7 @@ textarea {
 
 // button styling
 .#{$prefix}button,
-button,
+button:not(.#{$prefix}button--unstyled),
 input[type='reset'],
 input[type='submit'] {
 	@include -sg-button;
@@ -75,6 +75,15 @@ input[type='submit'] {
 
 .#{$prefix}button--outline {
 	@include -sg-button--outline;
+}
+
+.#{$prefix}button--unstyled {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	background: transparent none;
+	border: 0;
+	padding: 0;
 }
 
 // checkbox & radio button

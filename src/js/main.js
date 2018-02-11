@@ -16,15 +16,9 @@ clipboard.on('error', function(e) {
 });
 
 // TOOLTIPS FOR CLIPBOARD ACTIONS
-const btns = document.querySelectorAll(copySelector);
-for (let i = 0; i < btns.length; i++) {
-    btns[i].addEventListener('mouseleave', clearTooltip);
-    btns[i].addEventListener('blur', clearTooltip);
-}
-
-function clearTooltip(e) {
-    e.target.classList.remove('sg-tooltipped', 'sg-tooltipped-s');
-		e.target.removeAttribute('aria-label');
+function clearTooltip(elem) {
+    elem.classList.remove('sg-tooltipped', 'sg-tooltipped-s');
+		elem.removeAttribute('aria-label');
 		// when copying multiple links, focus on previous element
 		// prevents copy of the following link
 		document.firstElementChild.focus();
@@ -32,7 +26,10 @@ function clearTooltip(e) {
 
 function showTooltip(elem, msg) {
     elem.classList.add('sg-tooltipped', 'sg-tooltipped-s');
-    elem.setAttribute('aria-label', msg);
+		elem.setAttribute('aria-label', msg);
+		window.setTimeout(function() {
+			clearTooltip(elem);
+		}, 2000);
 }
 
 // UPLOAD FORM
