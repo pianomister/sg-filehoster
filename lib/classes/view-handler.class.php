@@ -353,11 +353,11 @@ EOT;
 		<article>
 			<form action="{action}" method="post">
 				<p>
-					<label for="username" class="sg-text-icon"><i class="sg-icon-profile"></i>{field_username}</label>
+					<label for="username"><span class="sg-text-icon"><i class="sg-icon-profile"></i>{field_username}</span></label>
 					<input name="username" type="text" id="username" placeholder="{field_username}" />
 				</p>
 				<p>
-					<label for="password" class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</label>
+					<label for="password"><span class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</span></label>
 					<input name="password" type="password" id="password" placeholder="{field_password}" />
 				</p>
 				<div class="sg-button-group">
@@ -534,7 +534,7 @@ EOT;
 EOT;
 
 				$passwordTemplate = <<<EOT
-				<label for="password" class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</label>
+				<label for="password"><span class="sg-text-icon"><i class="sg-icon-lock_close_round"></i>{field_password}</span></label>
 				<input name="password" type="password" id="password" />
 EOT;
 
