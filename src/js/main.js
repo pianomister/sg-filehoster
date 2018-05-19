@@ -5,7 +5,7 @@
 
 // CLIPBOARD ACTIONS
 const copySelector = '.sg-copy-action';
-const clipboard = new Clipboard(copySelector);
+const clipboard = new ClipboardJS(copySelector);
 clipboard.on('success', function(e) {
 	msg = e.trigger.getAttribute('data-copy-success');
 	showTooltip(e.trigger, msg);
