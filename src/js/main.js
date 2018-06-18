@@ -3,6 +3,8 @@
  * Main JS File
  */
 
+import {ClipboardJS} from 'clipboard';
+
 // CLIPBOARD ACTIONS
 const copySelector = '.sg-copy-action';
 const clipboard = new ClipboardJS(copySelector);

@@ -27,7 +27,7 @@ if( isset($_GET[FH\PARAM_ACTION]) ) {
 $viewData = FH\SGFilehoster::executeAction($action, $data);
 
 // render page
-$template = file_get_contents(__DIR__ . '/template.html');
+$template = file_get_contents(__DIR__ . '/dist/index.html');
 $template = str_replace('{TITLE}', FH\UI_TITLE, $template);
 $template = str_replace('{DESCRIPTION}', FH\Labels::get('view.welcome.title'), $template);
 $template = str_replace('{THEME}', FH\SGFilehoster::getTheme(), $template);
