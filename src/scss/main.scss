@@ -6,10 +6,7 @@
 @import './variables';
 
 // CSS reset
-@import '../../node_modules/normalize.css/normalize';
-
-// icons
-@import '../icons/style';
+@import '~normalize.css/normalize';
 
 @import './base/base';
 @import './base/typography';

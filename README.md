@@ -15,13 +15,12 @@ Simple PHP library to run your own filehoster.
 
 ## Installation
 To install the filehoster library, run `composer install` in the root directory of this project to install all PHP library dependencies.
-To install the UI, you need to run `npm install` and then `gulp` in the root directory to generate CSS and JS files inside the dist folder, which will be used by the UI.
+To install the UI, you need to run `npm install` and then `npm run build-prod` in the root directory to generate CSS and JS files inside the dist folder, which will be used by the UI.
 
 After installation of dependencies, adjust the setup of this library according to your needs in `lib/constants.php`. You should change the salt used for passwords, and set a username and generate a password for the admin user, in case you would like to use the admin panel.
 For both, you can use the helper script `lib/pwgenerator.php`, which generates a random salt and password hashes for you.
 
 Finally, upload all files to your webspace, and start using it! You may omit the package and build config files when uploading the library.
 
-### TODO
-- statistics for downloads / files?
-- migrate gulp to webpack
+### Wish list
+- statistics for downloads / files

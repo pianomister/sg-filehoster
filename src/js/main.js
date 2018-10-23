@@ -3,15 +3,17 @@
  * Main JS File
  */
 
+import * as ClipboardJS from 'clipboard'
+
 // CLIPBOARD ACTIONS
 const copySelector = '.sg-copy-action';
 const clipboard = new ClipboardJS(copySelector);
 clipboard.on('success', function(e) {
-	msg = e.trigger.getAttribute('data-copy-success');
+	let msg = e.trigger.getAttribute('data-copy-success');
 	showTooltip(e.trigger, msg);
 });
 clipboard.on('error', function(e) {
-	msg = e.trigger.getAttribute('data-copy-error');
+	let msg = e.trigger.getAttribute('data-copy-error');
 	showTooltip(e.trigger, msg);
 });
 
