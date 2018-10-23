@@ -15,6 +15,7 @@ npm-debug.log
 # build
 .cache
 /dist/
+/template.html
 
 # PHP composer
 composer.phar
