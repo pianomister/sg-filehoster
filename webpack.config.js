@@ -26,10 +26,13 @@ module.exports = {
 	module: {
 		rules: [
 			{
-				test: /\.js$/,
+				test: /\.m?js$/,
 				exclude: /node_modules/,
 				use: {
-					loader: 'babel-loader'
+					loader: 'babel-loader',
+					options: {
+					  presets: ['@babel/preset-env']
+					}
 				}
 			},
 			{
@@ -37,12 +40,7 @@ module.exports = {
 				use: [
 					// fallback to style-loader in development
 					devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
-					{
-						loader: 'css-loader',
-						options: {
-							minimize: !devMode
-						}
-					},
+					'css-loader',
 					'postcss-loader',
 					'sass-loader'
 				]
