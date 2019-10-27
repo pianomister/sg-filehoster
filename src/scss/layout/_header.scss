@@ -35,8 +35,8 @@ header {
 		}
 
 		svg {
-			rect,
-			path {
+			> rect,
+			> path {
 				stroke: var(--color-fg-page);
 			}
 		}
