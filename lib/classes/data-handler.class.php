@@ -226,11 +226,15 @@ class DataHandler
 		$file = self::getFile($searchId);
 		if ($file !== null) {
 			$path = realpath(\SGFilehoster\UPLOAD_PATH . $file->file_name);
-			header('Content-type: ' . mime_content_type($path));
-			header('Content-Length: ' . filesize($path) ); 
+			$finfo_mime = finfo_open(FILEINFO_MIME_TYPE);
+			$finfo_encoding = finfo_open(FILEINFO_MIME_ENCODING);
+			ignore_user_abort(true);
+			set_time_limit(0);
+			header('Content-Type: ' . finfo_file($finfo_mime, $path));
+			header('Content-Transfer-Encoding: ' . finfo_file($finfo_encoding, $path));
 			header('Content-Disposition: attachment; filename="' . $file->original_name . '"');
+			header('Cache-Control: private, must-revalidate, post-check=0, pre-check=0');
 			header('Expires: 0');
-			header('Cache-Control: must-revalidate, post-check=0, pre-check=0');
 			flush();
 			readfile($path);
 		}
